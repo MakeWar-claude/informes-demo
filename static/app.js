@@ -30,6 +30,14 @@ async function init(){
     document.querySelectorAll("#filtros button").forEach(x=>x.classList.remove("activo"));
     b.classList.add("activo"); renderWorklist(b.dataset.f);
   });
+  $("btnReset").onclick=resetDemo;
+}
+
+function resetDemo(){
+  if(!confirm("¿Reiniciar la demo? Se vaciarán tus asignaciones y los informes guardados, volviendo al estado inicial.")) return;
+  localStorage.removeItem("demo_asignados");
+  localStorage.removeItem("demo_guardados");
+  location.reload();
 }
 
 function pintarEstado(){
