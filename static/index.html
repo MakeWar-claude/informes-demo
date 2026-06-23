@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Informes — demo</title>
+<style>
+/* ===========================================================================
+   "Ethereal Clinical" — sistema de diseño de la app real (subconjunto) +
+   estilos propios de la demo (cardio: anamnesis y campos de protocolo).
+   =========================================================================== */
+:root{
+  --bg-app:#fcfbf9; --bg-panel:rgba(255,255,255,.95);
+  --text-main:#191f2f; --text-muted:#707a8a;
+  --primary:#4a778c; --primary-hover:#3b5f70;
+  --action-dictar:#52b788; --action-dictar-hover:#40916c;
+  --action-terra:#e76f51; --action-terra-soft:#f4d3cd; --action-leer:#5c7cfa;
+  --bg-hallazgos:#faedcd; --border-hallazgos:#e9c46a;
+  --bg-borrador:#f4f0fc; --border-borrador:#c5b3e6;
+  --mod-pet:#8b5cf6; --mod-mn:#10b981; --mod-tac:#f59e0b; --mod-cardio:#e11d48;
+  --shadow-soft:0 4px 15px -3px rgba(25,31,47,.02),0 10px 25px -5px rgba(25,31,47,.03);
+  --shadow-hover:0 15px 30px -5px rgba(25,31,47,.05);
+  --shadow-inner:inset 0 2px 10px rgba(25,31,47,.015);
+  --radius-sm:12px; --radius:20px; --radius-lg:28px; --radius-pill:9999px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",Calibri,system-ui,sans-serif;background:var(--bg-app);
+  color:var(--text-main);line-height:1.7;font-size:14.5px;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+header{padding:14px 30px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;max-width:1320px;margin:0 auto}
+header .logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--action-dictar));
+  display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:18px;flex:0 0 auto}
+header h1{font-size:1.3rem;font-weight:300;letter-spacing:-.5px;margin-right:auto;color:var(--primary)}
+header h1 strong{font-weight:600;color:var(--text-main)}
+.demo-tag{background:var(--action-terra);color:#fff;font-size:11px;font-weight:700;padding:3px 12px;border-radius:var(--radius-pill);letter-spacing:.5px}
+select,button,input,textarea{font-family:inherit;font-size:14px;border:none;transition:all .3s cubic-bezier(.2,1,.2,1);outline:none}
+select,button{border-radius:var(--radius-pill);padding:10px 22px;font-weight:600;letter-spacing:.3px;
+  background:rgba(25,31,47,.03);color:var(--text-main);box-shadow:var(--shadow-soft);cursor:pointer}
+select{background:var(--bg-panel);border:1px solid rgba(25,31,47,.04);font-weight:500}
+select:hover,button:hover:not(:disabled){box-shadow:var(--shadow-hover);transform:translateY(-1px)}
+button:active:not(:disabled){transform:scale(.97)}
+button:disabled{opacity:.5;cursor:not-allowed;box-shadow:none}
+button.secundario{background:#fff;color:var(--primary);border:1px solid rgba(25,31,47,.05)}
+button.grande{background:var(--action-dictar);color:#fff;padding:14px 30px;font-size:15px}
+button.grande:hover:not(:disabled){background:var(--action-dictar-hover)}
+button.primario{background:var(--primary);color:#fff}
+button.primario:hover:not(:disabled){background:var(--primary-hover)}
+button.peligro{background:var(--action-terra);color:#fff}
+label{font-size:11px;color:var(--text-muted);display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:1px;font-weight:600}
+input,textarea{border-radius:var(--radius-sm);padding:9px 13px;background:#fff;color:var(--text-main);
+  border:1px solid rgba(25,31,47,.08);box-shadow:var(--shadow-inner);width:100%}
+input:focus,textarea:focus{border-color:var(--primary)}
+.status-pill,#estado{display:inline-flex;align-items:center;gap:10px;background:#fff;padding:9px 16px;border-radius:var(--radius-pill);
+  box-shadow:var(--shadow-soft);border:1px solid rgba(25,31,47,.03);font-size:12.5px;font-weight:600;color:var(--text-muted)}
+#estado{margin-left:0}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#9aa6b2}
+.dot.ok{background:var(--action-dictar);box-shadow:0 0 5px rgba(82,183,136,.3)}
+.dot.off{background:#cbd2da}
+
+/* tabs */
+.tab-bar-wrap{max-width:1320px;margin:0 auto 22px;padding:0 30px}
+.tab-bar{display:inline-flex;background:rgba(25,31,47,.04);padding:6px;border-radius:var(--radius-pill);gap:4px;flex-wrap:wrap}
+.tab-btn{background:transparent;box-shadow:none;padding:10px 26px;font-size:13.5px;color:var(--text-muted)}
+.tab-btn:hover:not(.activo){color:var(--text-main);background:rgba(255,255,255,.4);box-shadow:none;transform:none}
+.tab-btn.activo{background:#fff;color:var(--primary);box-shadow:0 4px 12px rgba(25,31,47,.04)}
+
+/* layout */
+main{max-width:1320px;margin:0 auto;padding:0 30px 40px}
+main.cols{display:grid;grid-template-columns:40% 60%;gap:34px;align-items:start}
+@media(max-width:1024px){main.cols{grid-template-columns:1fr}}
+.panel{background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow-soft);padding:28px;
+  border:1px solid rgba(25,31,47,.02);display:flex;flex-direction:column;gap:12px;margin-bottom:22px}
+h2{font-size:1.1rem;font-weight:600;margin-bottom:6px;color:var(--text-main);letter-spacing:-.3px}
+.panel h2{font-size:13px;text-transform:uppercase;color:var(--text-muted);letter-spacing:.06em;font-weight:700}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}
+.row>div{min-width:0;flex:1}
+.muted{color:var(--text-muted)} .small{font-size:12.5px}
+.hidden{display:none!important}
+
+/* paciente */
+.demo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px 24px;margin:6px 0 8px;
+  padding:20px;background:linear-gradient(145deg,#fdfdfc,#f8f8f6);border-radius:var(--radius);border:1px solid rgba(25,31,47,.02)}
+.demo-grid .label{font-size:10.5px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;font-weight:600}
+.demo-grid .valor{font-size:15px;font-weight:500;color:var(--text-main)}
+
+/* previos */
+.previo{background:#fbfbfc;border:1px solid rgba(25,31,47,.04);border-radius:var(--radius-sm);margin-bottom:8px;overflow:hidden}
+.previo summary{padding:12px 18px;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:12px;font-size:13px}
+.previo summary .fecha{font-weight:600;color:var(--primary);min-width:90px}
+.previo summary .tipo{color:var(--text-muted);flex:1;font-weight:500}
+.previo .texto-informe{padding:16px 18px;background:#fff;white-space:pre-wrap;font-size:13.5px;border-top:1px dashed rgba(25,31,47,.06);line-height:1.6}
+.previo summary .chk-comparar{width:15px;height:15px;cursor:pointer;flex:0 0 auto}
+.previo.seleccionado{border-color:var(--primary);box-shadow:0 0 0 1px var(--primary) inset}
+
+/* paneles IA */
+.motivo-panel{background:#eaf6ef;border:1px solid #bfe3cd;padding:16px 20px;border-radius:var(--radius);margin:6px 0}
+.motivo-panel h3{color:var(--action-dictar-hover);font-size:12px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.motivo-panel .raw{font-size:13.5px;white-space:pre-wrap}
+.motivo-panel .refinado{margin-top:10px;padding-top:10px;border-top:1px dashed #bfe3cd;font-size:14px;font-weight:500}
+.hallazgos-panel{background:var(--bg-hallazgos);border:1px solid var(--border-hallazgos);padding:16px 22px;border-radius:var(--radius);margin-top:6px}
+.hallazgos-panel h3{color:#926c1e;font-weight:700;margin-bottom:8px;font-size:.9rem;text-transform:uppercase;letter-spacing:.04em}
+
+/* textareas / grabar */
+textarea.grande{min-height:150px}
+textarea.informe{min-height:420px;font-size:15.5px;background:#fff;box-shadow:0 10px 50px rgba(25,31,47,.04);padding:24px;border-color:transparent}
+.grabar-zona{background:#fff;border:1px solid rgba(25,31,47,.04);border-radius:var(--radius);padding:20px;display:flex;align-items:center;
+  gap:14px;margin:8px 0;transition:all .6s ease}
+.grabar-zona .dot{width:12px;height:12px;background:#b0b8c1}
+.grabar-zona.grabando{background:#fffcfb;box-shadow:0 0 30px rgba(231,111,81,.1);border-color:var(--action-terra-soft)}
+.grabar-zona.grabando .dot{background:var(--action-terra);animation:pulso 1.5s infinite}
+.grabar-zona.procesando .dot{background:var(--mod-tac);animation:pulso 1.5s infinite}
+@keyframes pulso{0%,100%{box-shadow:0 0 0 0 rgba(231,111,81,.4)}50%{box-shadow:0 0 0 9px rgba(231,111,81,0)}}
+.timer{font-family:ui-monospace,Consolas,monospace;color:var(--text-muted);font-weight:600}
+.aviso{background:rgba(74,119,140,.05);color:var(--primary);padding:12px 14px;border-radius:var(--radius-sm);font-size:13px;border-left:3px solid var(--primary)}
+.aviso.warn{background:#fef6e7;color:#92600e;border-left-color:#e9c46a}
+
+/* listas / tablas */
+.act-table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-soft)}
+.act-table th,.act-table td{padding:12px 16px;text-align:left;border-bottom:1px solid rgba(25,31,47,.04);vertical-align:middle}
+.act-table th{background:#fbfbfc;color:var(--text-muted);font-weight:600;text-transform:uppercase;font-size:11px;letter-spacing:.8px}
+.act-table tr:last-child td{border-bottom:none}
+.act-table tr:hover td{background:#fbfbfc}
+.act-table tr.asignado td{background:rgba(82,183,136,.06)}
+.badge-mod{font-size:10px;font-weight:700;padding:3px 9px;border-radius:8px;color:#fff;letter-spacing:.03em;background:var(--text-muted)}
+.badge-mod.PET{background:var(--mod-pet)} .badge-mod.MN{background:var(--mod-mn)} .badge-mod.CARDIO{background:var(--mod-cardio)}
+.fase-pill{font-size:10px;font-weight:700;padding:2px 9px;border-radius:var(--radius-pill);margin-left:6px}
+.fase-pill.reposo{background:#eef2f7;color:#5b6b7a} .fase-pill.esfuerzo{background:#fde7ec;color:#be123c}
+.btn-asignar{font-size:11px;padding:6px 14px;background:var(--primary);color:#fff;border-radius:var(--radius-pill);cursor:pointer;white-space:nowrap}
+.btn-abrir{font-size:11px;padding:6px 14px;border-radius:var(--radius-pill);cursor:pointer;white-space:nowrap}
+.btn-abrir.dictar{background:var(--action-dictar);color:#fff} .btn-abrir.anamnesis{background:var(--action-leer);color:#fff}
+.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px;background:#fff;padding:14px 18px;border-radius:var(--radius);box-shadow:var(--shadow-soft)}
+.filtros{display:flex;gap:8px;flex-wrap:wrap}
+.filtros button{padding:7px 16px;font-size:12.5px;background:#fff;color:var(--primary);border:1px solid rgba(25,31,47,.06)}
+.filtros button.activo{background:var(--primary);color:#fff}
+
+/* cardio: anamnesis + protocolo */
+.card{background:#fff;border:1px solid rgba(25,31,47,.05);border-radius:var(--radius);padding:20px;margin-bottom:16px}
+.sec{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--primary);font-weight:700;margin-bottom:12px;
+  padding-bottom:6px;border-bottom:1px solid rgba(74,119,140,.12)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px} .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.kv{display:flex;flex-direction:column;gap:3px;font-size:13.5px}
+.kv .k{font-size:10.5px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.kv .v{font-weight:500}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:rgba(74,119,140,.08);color:var(--primary);border-radius:var(--radius-pill);padding:4px 13px;font-size:12.5px;font-weight:600}
+.chip.neg{background:#f1f3f5;color:#9aa6b2}
+.chip.red{background:#fde7ec;color:#be123c}
+.tog{display:inline-flex;background:rgba(25,31,47,.04);padding:4px;border-radius:var(--radius-pill);gap:3px}
+.tog .tog-btn{padding:7px 16px;font-size:12.5px;background:transparent;box-shadow:none;color:var(--text-muted)}
+.tog .tog-btn.activo{background:#fff;color:var(--primary);box-shadow:var(--shadow-soft)}
+.fila-medic{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;padding:7px 0;border-bottom:1px solid rgba(25,31,47,.05);font-size:13px}
+.dictar-campos{background:#f6f3fc;border:1px solid var(--border-borrador);border-radius:var(--radius);padding:14px 18px;margin-bottom:14px}
+.dictar-campos .ayuda{font-size:12px;color:#6d28d9;margin:6px 0}
+.report-box{white-space:pre-wrap;background:#fff;border:1px solid rgba(25,31,47,.06);border-radius:var(--radius);
+  padding:22px;font-size:15px;line-height:1.7;min-height:300px}
+.modo-badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 11px;border-radius:var(--radius-pill);margin-left:8px}
+.modo-badge.directo{background:#e6f7ef;color:#166534} .modo-badge.precocinado{background:#fef3c7;color:#92600e}
+
+/* volver */
+.volver{cursor:pointer;color:var(--primary);font-weight:600;font-size:13px;display:inline-flex;align-items:center;gap:6px;margin-bottom:14px}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">I</div>
+  <h1>Informes <strong>· dictado guiado</strong></h1>
+  <span class="demo-tag">DEMO</span>
+  <span id="estado" class="status-pill"><span class="dot" id="dotEstado"></span><span id="estadoTxt">cargando…</span></span>
+</header>
+
+<div class="tab-bar-wrap">
+  <div class="tab-bar">
+    <button class="tab-btn activo" data-tab="pendientes">📥 Pendientes</button>
+    <button class="tab-btn" data-tab="informe">📝 Informe</button>
+    <button class="tab-btn" data-tab="estudios">📁 Mis estudios</button>
+  </div>
+</div>
+
+<!-- PENDIENTES -->
+<main id="mainPendientes">
+  <div class="toolbar">
+    <div class="filtros" id="filtros">
+      <button class="activo" data-f="todos">Todos</button>
+      <button data-f="pet">PET/CT</button>
+      <button data-f="cardio">Cardio</button>
+      <button data-f="mn">MN conv.</button>
+    </div>
+    <span class="muted small" style="margin-left:auto">Cola global — asígnate un estudio para informarlo</span>
+  </div>
+  <table class="act-table">
+    <thead><tr><th>Fecha</th><th>Paciente</th><th>Estudio</th><th>Sala</th><th style="text-align:right">Acción</th></tr></thead>
+    <tbody id="worklistBody"></tbody>
+  </table>
+</main>
+
+<!-- INFORME (workspace, render dinámico) -->
+<main id="mainInforme" class="hidden"></main>
+
+<!-- MIS ESTUDIOS -->
+<main id="mainEstudios" class="hidden">
+  <div id="estudiosBody"></div>
+</main>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
