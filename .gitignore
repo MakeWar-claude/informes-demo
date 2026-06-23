@@ -4,6 +4,9 @@ __pycache__/
 .env
 *.log
 data/apikey.txt
+# Prompts REALES (IP) — solo en local y en Render como secret files, NUNCA en el repo:
+prompt_pet.txt
+prompt_cardio.txt
 .DS_Store
 venv/
 .venv/

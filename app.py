@@ -164,7 +164,7 @@ def api_transcribir():
 
 
 # ------------------------------------------------- estructuración (Claude) ---
-SYS_PET = (
+SYS_PET_FALLBACK = (
     "Eres un sistema que reestructura el dictado telegráfico de un médico nuclear "
     "en un informe formal de PET/CT o Medicina Nuclear convencional, en español, "
     "con el estilo de la casa. Reglas: el informe lleva TÍTULO con la fecha, una "
@@ -177,7 +177,7 @@ SYS_PET = (
     "e incorpora en la conclusión la valoración de la respuesta/evolución. "
     "Devuelve SOLO el texto del informe."
 )
-SYS_CARDIO = (
+SYS_CARDIO_FALLBACK = (
     "Eres un sistema que redacta el informe de SPECT de perfusión miocárdica en "
     "español con el estilo de la casa, a partir de datos estructurados (constantes, "
     "FEVI, volúmenes, SSS/SRS/SDS, TID) y de la impresión visual dictada. Estructura: "
@@ -187,6 +187,31 @@ SYS_CARDIO = (
     "isquemia y carga isquémica (SDS%). No inventes cifras que no estén en los datos. "
     "Devuelve SOLO el texto del informe."
 )
+
+
+def _cargar_prompt(nombre, fallback):
+    """Carga el prompt REAL desde secret file de Render (privado, fuera del repo);
+    si no existe, usa el condensado. Busca prompt_<nombre>.txt junto a la app o en
+    /etc/secrets, o la ruta indicada en PROMPT_<NOMBRE>."""
+    cand = []
+    env = os.environ.get("PROMPT_" + nombre.upper())
+    if env:
+        cand.append(env)
+    cand += [os.path.join(BASE, f"prompt_{nombre}.txt"),
+             f"/etc/secrets/prompt_{nombre}.txt"]
+    for p in cand:
+        try:
+            with open(p, encoding="utf-8") as f:
+                t = f.read().strip()
+                if t:
+                    return t
+        except Exception:
+            pass
+    return fallback
+
+
+SYS_PET = _cargar_prompt("pet", SYS_PET_FALLBACK)
+SYS_CARDIO = _cargar_prompt("cardio", SYS_CARDIO_FALLBACK)
 
 
 def _fewshot(grupo, subtipo, excluir_id):
