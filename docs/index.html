@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Informes — demo</title>
+<style>
+:root{--primary:#4a778c;--dictar:#52b788;--bg:#fcfbf9;--text:#191f2f;--muted:#707a8a}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:"Segoe UI",Calibri,system-ui,sans-serif;background:var(--bg);color:var(--text);
+  display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}
+.card{max-width:520px;text-align:center;background:#fff;border:1px solid rgba(25,31,47,.05);
+  border-radius:28px;box-shadow:0 15px 40px -10px rgba(25,31,47,.08);padding:44px 38px}
+.logo{width:64px;height:64px;border-radius:18px;background:linear-gradient(135deg,var(--primary),var(--dictar));
+  display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:32px;margin:0 auto 22px}
+h1{font-weight:300;color:var(--primary);font-size:1.5rem;letter-spacing:-.5px;margin-bottom:6px}
+h1 strong{font-weight:600;color:var(--text)}
+.spin{width:46px;height:46px;margin:26px auto 18px;border:4px solid rgba(74,119,140,.15);
+  border-top-color:var(--primary);border-radius:50%;animation:g 1s linear infinite}
+@keyframes g{to{transform:rotate(360deg)}}
+.msg{font-size:1.05rem;font-weight:600;margin-bottom:8px}
+.sub{font-size:.92rem;color:var(--muted);line-height:1.6}
+.bar{height:8px;background:rgba(25,31,47,.06);border-radius:6px;overflow:hidden;margin:22px 0 10px}
+.fill{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--dictar));
+  border-radius:6px;transition:width .6s ease}
+.t{font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.err{color:#b9711a;font-size:.85rem;margin-top:14px;display:none}
+a.manual{display:none;margin-top:16px;color:var(--primary);font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo">I</div>
+  <h1>Informes <strong>· demo</strong></h1>
+  <div class="spin"></div>
+  <div class="msg" id="msg">Calentando motores…</div>
+  <div class="sub">La demo se aloja en un servidor gratuito que se "duerme" cuando nadie la usa.
+    Estamos despertándola: suele tardar <b>menos de un minuto</b>. Te llevaremos dentro automáticamente.</div>
+  <div class="bar"><div class="fill" id="fill"></div></div>
+  <div class="t"><span id="t">0</span> s</div>
+  <div class="err" id="err">Está tardando más de lo normal. <a id="manual" href="#">Entrar manualmente →</a></div>
+</div>
+<script>
+const APP="https://informes-demo.onrender.com";
+const HEALTH=APP+"/healthz";
+const ESPERA=60;               // segundos estimados para la barra
+let t=0, hecho=false;
+document.getElementById("manual").href=APP;
+
+const fill=document.getElementById("fill"), tEl=document.getElementById("t"),
+      err=document.getElementById("err"), msg=document.getElementById("msg");
+
+setInterval(()=>{ if(hecho) return; t++; tEl.textContent=t;
+  fill.style.width=Math.min(96, (t/ESPERA)*100)+"%";
+  if(t===12) msg.textContent="Arrancando el servidor…";
+  if(t===30) msg.textContent="Ya casi está…";
+  if(t>=ESPERA){ err.style.display="block"; document.getElementById("manual").style.display="inline"; }
+},1000);
+
+async function entrar(){ if(hecho) return; hecho=true; fill.style.width="100%";
+  msg.textContent="¡Lista! Entrando…"; location.replace(APP); }
+
+async function intentar(){
+  try{
+    const c=new AbortController(); const to=setTimeout(()=>c.abort(), 8000);
+    const r=await fetch(HEALTH,{cache:"no-store",signal:c.signal});
+    clearTimeout(to);
+    if(r.ok){ return entrar(); }
+  }catch(e){ /* dormida o despertando: reintentar */ }
+  if(!hecho) setTimeout(intentar, 2500);
+}
+intentar();
+</script>
+</body>
+</html>

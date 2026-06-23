@@ -82,6 +82,18 @@ def get_estudio(eid):
 
 
 # ----------------------------------------------------------------- rutas -----
+@app.after_request
+def _cors(resp):
+    # la pantalla de "calentando motores" (GitHub Pages) consulta /healthz
+    resp.headers["Access-Control-Allow-Origin"] = "*"
+    return resp
+
+
+@app.route("/healthz")
+def healthz():
+    return jsonify({"ok": True})
+
+
 @app.route("/")
 def index():
     return send_from_directory(app.static_folder, "index.html")
