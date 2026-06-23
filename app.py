@@ -38,6 +38,26 @@ app.config["MAX_CONTENT_LENGTH"] = 50 * 1024 * 1024  # 50 MB audio
 
 DEMO_MODEL = os.environ.get("DEMO_MODEL", "claude-sonnet-4-6")
 
+# --- limitador sencillo (la clave es pública en la demo): N llamadas/hora/proceso
+import time
+import threading
+_RL_LOCK = threading.Lock()
+_RL = {}
+DEMO_MAX_CALLS = int(os.environ.get("DEMO_MAX_CALLS", "300"))
+DEMO_WINDOW = 3600
+
+
+def _rate_ok(bucket):
+    now = time.time()
+    with _RL_LOCK:
+        xs = [t for t in _RL.get(bucket, []) if now - t < DEMO_WINDOW]
+        if len(xs) >= DEMO_MAX_CALLS:
+            _RL[bucket] = xs
+            return False
+        xs.append(now)
+        _RL[bucket] = xs
+        return True
+
 
 # ---------------------------------------------------------------- dataset ----
 def cargar_estudios():
@@ -112,6 +132,8 @@ def api_transcribir():
     f = request.files.get("audio")
     if not f:
         return jsonify({"error": "sin audio"}), 400
+    if not _rate_ok("voz"):
+        return jsonify({"error": "límite de la demo alcanzado, prueba más tarde"}), 429
     blob = f.read()
     nombre = f.filename or "audio.webm"
     try:
@@ -149,6 +171,10 @@ SYS_PET = (
     "apertura estándar, HALLAZGOS en orden craneocaudal con negaciones canónicas de "
     "lo no mencionado, y una CONCLUSIÓN breve. No inventes cifras: si el médico no "
     "dicta un SUV/medida, no lo pongas. No incluyas datos de paciente, centro ni firma. "
+    "Si se aportan ESTUDIOS PREVIOS PARA COMPARACIÓN, realiza una comparación evolutiva: "
+    "menciona explícitamente la comparación con el/los estudio(s) previo(s) por su fecha, "
+    "describe los cambios (lesiones nuevas, desaparecidas, mayor o menor captación/tamaño) "
+    "e incorpora en la conclusión la valoración de la respuesta/evolución. "
     "Devuelve SOLO el texto del informe."
 )
 SYS_CARDIO = (
@@ -213,6 +239,8 @@ def api_estructurar():
 
     if not os.environ.get("ANTHROPIC_API_KEY") or not dictado:
         return jsonify({"informe": prebaked, "modo": "pre-cocinado"})
+    if not _rate_ok("ia"):
+        return jsonify({"informe": prebaked, "modo": "pre-cocinado (límite de la demo alcanzado)"})
 
     system = SYS_CARDIO if grupo == "cardio" else SYS_PET
     mensajes = []
@@ -226,6 +254,14 @@ def api_estructurar():
         ctx["protocolo_campos"] = e.get("protocolo_campos")
     contenido = (f"DATOS DEL ESTUDIO:\n{json.dumps(ctx, ensure_ascii=False, indent=2)}\n\n"
                  f"DICTADO:\n{dictado}")
+
+    # estudios previos seleccionados para comparación evolutiva
+    previos = p.get("previos") or []
+    if previos:
+        bloque = "\n\n".join(
+            f"- {pv.get('fecha','')} · {pv.get('descripcion','')}\n  {pv.get('resumen','')}"
+            for pv in previos)
+        contenido += ("\n\nESTUDIOS PREVIOS PARA COMPARACIÓN (compara la evolución):\n" + bloque)
     mensajes.append({"role": "user", "content": contenido})
 
     try:

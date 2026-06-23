@@ -8,7 +8,13 @@
       "par_id": null,
       "procedure_code": "PET-CT",
       "descripcion": "PET/CT con 18F-FDG (cuerpo entero)",
-      "paciente": { "nombre": "Vargas Montesdeoca, Demo Uno", "nhc": "100001", "edad": 67, "sexo": "M", "fecha_nac": "1958-09-12" },
+      "paciente": {
+        "nombre": "Vargas Montesdeoca, Demo Uno",
+        "nhc": "100001",
+        "edad": 67,
+        "sexo": "M",
+        "fecha_nac": "1958-09-12"
+      },
       "fecha": "2026-06-18",
       "sala": "PET/CT",
       "estado": "pendiente",
@@ -28,14 +34,24 @@
       "par_id": null,
       "procedure_code": "PET-CT",
       "descripcion": "PET/CT con 18F-FDG (cuerpo entero)",
-      "paciente": { "nombre": "Santana Ojeda, Demo Dos", "nhc": "100002", "edad": 59, "sexo": "F", "fecha_nac": "1966-11-03" },
+      "paciente": {
+        "nombre": "Santana Ojeda, Demo Dos",
+        "nhc": "100002",
+        "edad": 59,
+        "sexo": "F",
+        "fecha_nac": "1966-11-03"
+      },
       "fecha": "2026-06-17",
       "sala": "PET/CT",
       "estado": "pendiente",
       "motivo_raw": "mujer 59 ca mama izq luminal B operada 2023, elevacion CA15.3, mamo y eco normales. descartar recidiva. previo pet 2025",
       "motivo_refinado": "Mujer de 59 años con antecedente de carcinoma de mama izquierdo (luminal B) intervenido en 2023. Elevación de CA 15.3 con imagen convencional normal. Se solicita PET/CT por sospecha de recidiva.",
       "previos": [
-        { "fecha": "2025-05-10", "descripcion": "PET/CT con 18F-FDG", "resumen": "Sin evidencia de enfermedad tumoral viable. Cambios postquirúrgicos en mama izquierda sin captación patológica." }
+        {
+          "fecha": "2025-05-10",
+          "descripcion": "PET/CT con 18F-FDG",
+          "resumen": "Sin evidencia de enfermedad tumoral viable. Cambios postquirúrgicos en mama izquierda sin captación patológica."
+        }
       ],
       "dictado_ejemplo": "elevacion marcadores. comparo con pet del año pasado. foco captante en ganglio axilar izquierdo nivel I nuevo suv 5. lesion litica en cuerpo vertebral D8 captante suv 7 nueva. higado limpio",
       "informe_prebaked": "Estudio PET/TC con 18F-FDG del 17/06/2026:\n\nMotivo de consulta:\nMujer de 59 años con antecedente de carcinoma de mama izquierdo (luminal B) intervenido en 2023, con elevación de CA 15.3 e imagen convencional normal. Se solicita estudio PET/CT por sospecha de recidiva.\n\nGlucemia en ayunas: 89 mg/dl\n\nInforme:\nSe realiza estudio a los 55 minutos de la inyección intravenosa de 142 MBq de 18F-FDG, obteniendo imágenes desde vértex craneal a tercio superior de miembros inferiores.\nSe compara con estudio previo del 10/05/2025.\n\nCambios postquirúrgicos en mama izquierda sin alteraciones metabólicas de significado patológico.\nFoco hipermetabólico de nueva aparición en adenopatía axilar izquierda de nivel I (SUV máx. 5,2), no presente en el estudio previo.\nLesión lítica de nueva aparición en el cuerpo vertebral de D8 con aumento patológico de la captación del radiofármaco (SUV máx. 7,4), compatible con depósito secundario.\nLa captación hepatoesplénica es homogénea, sin identificarse focos patológicos.\nNo se observan focos patológicos suprarrenales.\nNo se observan adenopatías de tamaño significativo ni captación patológica en cadenas ganglionares retroperitoneales ni mesentéricas.\n\nDistribución fisiológica del radiofármaco en el resto de estructuras incluidas en el estudio, sin observar otros focos hipermetabólicos compatibles con tejido tumoral viable con afinidad por la 18F-FDG.\n\nConclusión:\nRecidiva tumoral con afectación ganglionar axilar izquierda y depósito secundario óseo en D8, de nueva aparición respecto al estudio previo.",
@@ -50,14 +66,24 @@
       "par_id": null,
       "procedure_code": "PET-CT-CIV",
       "descripcion": "PET/CT con 18F-FDG y contraste IV (cuerpo entero)",
-      "paciente": { "nombre": "Betancor Ramírez, Demo Tres", "nhc": "100003", "edad": 64, "sexo": "M", "fecha_nac": "1961-07-21" },
+      "paciente": {
+        "nombre": "Betancor Ramírez, Demo Tres",
+        "nhc": "100003",
+        "edad": 64,
+        "sexo": "M",
+        "fecha_nac": "1961-07-21"
+      },
       "fecha": "2026-06-16",
       "sala": "PET/CT",
       "estado": "pendiente",
       "motivo_raw": "varon 64 adenoca recto medio tratado con QRT neoadyuvante. reevaluacion previo a cirugia. dar contraste iv para valorar higado. previo de estadificacion en marzo",
       "motivo_refinado": "Varón de 64 años con adenocarcinoma de recto medio tras quimiorradioterapia neoadyuvante. Se solicita PET/CT con contraste IV para reevaluación de respuesta previa a cirugía.",
       "previos": [
-        { "fecha": "2026-03-04", "descripcion": "PET/CT con 18F-FDG", "resumen": "Engrosamiento parietal hipermetabólico en recto medio (SUV máx. 14) y adenopatía mesorrectal captante." }
+        {
+          "fecha": "2026-03-04",
+          "descripcion": "PET/CT con 18F-FDG",
+          "resumen": "Engrosamiento parietal hipermetabólico en recto medio (SUV máx. 14) y adenopatía mesorrectal captante."
+        }
       ],
       "dictado_ejemplo": "reevaluacion tras neoadyuvancia. con contraste iv. marcada disminucion de la captacion rectal respecto al previo, suv ahora 4. adenopatia mesorrectal ya no capta. higado sin metastasis. buena respuesta",
       "informe_prebaked": "Estudio PET/TC con 18F-FDG y contraste intravenoso del 16/06/2026:\n\nMotivo de consulta:\nVarón de 64 años con adenocarcinoma de recto medio tras quimiorradioterapia neoadyuvante. Se solicita estudio PET/CT para reevaluación de respuesta previa a cirugía.\n\nGlucemia en ayunas: 101 mg/dl\n\nInforme:\nSe realiza estudio a los 60 minutos de la inyección intravenosa de 188 MBq de 18F-FDG, con administración de contraste yodado intravenoso, obteniendo imágenes desde vértex craneal a tercio superior de miembros inferiores.\nSe compara con estudio previo del 04/03/2026.\n\nMarcada disminución del engrosamiento parietal y de la captación del radiofármaco a nivel del recto medio (SUV máx. actual 4,1; previo 14,0), en relación con buena respuesta al tratamiento.\nResolución de la captación patológica en la adenopatía mesorrectal descrita en el estudio previo.\nLa captación hepatoesplénica es homogénea, sin identificarse focos patológicos tras la administración de contraste.\nNo se observan adenopatías de tamaño significativo ni captación patológica en cadenas ganglionares retroperitoneales ni mesentéricas.\nNo se observan focos hipermetabólicos en el esqueleto óseo.\n\nDistribución fisiológica del radiofármaco en el resto de estructuras incluidas en el estudio, sin observar otros focos hipermetabólicos compatibles con tejido tumoral viable con afinidad por la 18F-FDG.\n\nConclusión:\nRespuesta metabólica parcial mayor a nivel del tumor primario rectal, con resolución de la afectación ganglionar mesorrectal.\nSin evidencia de enfermedad metastásica a distancia.",
@@ -72,7 +98,13 @@
       "par_id": null,
       "procedure_code": "PET-CT",
       "descripcion": "PET/CT con 18F-FDG (estadificación linfoma)",
-      "paciente": { "nombre": "Quintana Falcón, Demo Cuatro", "nhc": "100004", "edad": 38, "sexo": "M", "fecha_nac": "1987-12-30" },
+      "paciente": {
+        "nombre": "Quintana Falcón, Demo Cuatro",
+        "nhc": "100004",
+        "edad": 38,
+        "sexo": "M",
+        "fecha_nac": "1987-12-30"
+      },
       "fecha": "2026-06-15",
       "sala": "PET/CT",
       "estado": "pendiente",
@@ -92,14 +124,29 @@
       "par_id": null,
       "procedure_code": "PET-CT",
       "descripcion": "PET/CT con 18F-FDG (respuesta linfoma)",
-      "paciente": { "nombre": "Déniz Morales, Demo Cinco", "nhc": "100005", "edad": 54, "sexo": "F", "fecha_nac": "1971-08-14" },
+      "paciente": {
+        "nombre": "Déniz Morales, Demo Cinco",
+        "nhc": "100005",
+        "edad": 54,
+        "sexo": "F",
+        "fecha_nac": "1971-08-14"
+      },
       "fecha": "2026-06-12",
       "sala": "PET/CT",
       "estado": "pendiente",
       "motivo_raw": "mujer 54 linfoma B difuso celula grande tras 6 ciclos R-CHOP. PET de fin de tratamiento. valorar respuesta. tenia masa mediastinica bulky",
       "motivo_refinado": "Mujer de 54 años con linfoma B difuso de célula grande tras 6 ciclos de R-CHOP. Se solicita PET/CT de fin de tratamiento para valoración de respuesta metabólica.",
       "previos": [
-        { "fecha": "2026-01-20", "descripcion": "PET/CT con 18F-FDG (estadificación)", "resumen": "Masa mediastínica bulky hipermetabólica (SUV máx. 22) y adenopatías paraaórticas captantes." }
+        {
+          "fecha": "2026-01-20",
+          "descripcion": "PET/CT con 18F-FDG (estadificación)",
+          "resumen": "Masa mediastínica bulky hipermetabólica (SUV máx. 22) y adenopatías paraaórticas captantes."
+        },
+        {
+          "fecha": "2026-03-15",
+          "descripcion": "PET/CT con 18F-FDG (interim, tras 3 ciclos)",
+          "resumen": "Respuesta parcial: masa mediastinica de menor tamano y captacion (SUV max. 8, previo 22), persiste leve captacion residual paraaortica (Deauville 4)."
+        }
       ],
       "dictado_ejemplo": "fin de tratamiento. comparo con la estadificacion. la masa mediastinica residual ya no capta, capta menos que el higado, deauville 2. adenopatias paraaorticas resueltas. respuesta metabolica completa",
       "informe_prebaked": "Estudio PET/TC con 18F-FDG del 12/06/2026:\n\nMotivo de consulta:\nMujer de 54 años con linfoma B difuso de célula grande tras 6 ciclos de R-CHOP. Se solicita estudio PET/CT de fin de tratamiento para valoración de respuesta.\n\nGlucemia en ayunas: 92 mg/dl\n\nInforme:\nSe realiza estudio a los 60 minutos de la inyección intravenosa de 165 MBq de 18F-FDG, obteniendo imágenes desde vértex craneal a tercio superior de miembros inferiores.\nSe compara con estudio previo del 20/01/2026.\n\nValores de referencia: SUVmax hígado: 3,3; SUVmax mediastino: 2,4\n\nPersiste masa residual mediastínica de menor tamaño respecto al estudio previo, sin captación patológica del radiofármaco, con intensidad inferior a la del pool vascular mediastínico (Deauville 2).\nResolución completa de la captación patológica en las adenopatías paraaórticas descritas en el estudio previo.\nLa captación hepatoesplénica es homogénea, sin identificarse focos patológicos.\nNo se observan focos hipermetabólicos en el esqueleto óseo.\n\nDistribución fisiológica del radiofármaco en el resto de estructuras incluidas en el estudio, sin observar otros focos hipermetabólicos compatibles con tejido tumoral viable con afinidad por la 18F-FDG.\n\nImpresión diagnóstica:\nRespuesta metabólica completa (Deauville 2). Masa residual mediastínica sin tejido tumoral viable con afinidad por la 18F-FDG.",
@@ -114,7 +161,13 @@
       "par_id": null,
       "procedure_code": "PET-CEREBRAL",
       "descripcion": "PET cerebral con 18F-FDG (estudio de demencia)",
-      "paciente": { "nombre": "Hernández Suárez, Demo Seis", "nhc": "100006", "edad": 72, "sexo": "F", "fecha_nac": "1953-04-02" },
+      "paciente": {
+        "nombre": "Hernández Suárez, Demo Seis",
+        "nhc": "100006",
+        "edad": 72,
+        "sexo": "F",
+        "fecha_nac": "1953-04-02"
+      },
       "fecha": "2026-06-11",
       "sala": "PET/CT",
       "estado": "pendiente",
@@ -134,7 +187,13 @@
       "par_id": null,
       "procedure_code": "PET-CT",
       "descripcion": "PET/CT con 18F-FDG (cuerpo entero)",
-      "paciente": { "nombre": "Cabrera Rivero, Demo Siete", "nhc": "100007", "edad": 61, "sexo": "M", "fecha_nac": "1964-10-19" },
+      "paciente": {
+        "nombre": "Cabrera Rivero, Demo Siete",
+        "nhc": "100007",
+        "edad": 61,
+        "sexo": "M",
+        "fecha_nac": "1964-10-19"
+      },
       "fecha": "2026-06-10",
       "sala": "PET/CT",
       "estado": "pendiente",
@@ -154,7 +213,13 @@
       "par_id": null,
       "procedure_code": "PET-PSMA",
       "descripcion": "PET/CT con 68Ga-PSMA (próstata)",
-      "paciente": { "nombre": "Medina Alonso, Demo Ocho", "nhc": "100008", "edad": 70, "sexo": "M", "fecha_nac": "1955-02-27" },
+      "paciente": {
+        "nombre": "Medina Alonso, Demo Ocho",
+        "nhc": "100008",
+        "edad": 70,
+        "sexo": "M",
+        "fecha_nac": "1955-02-27"
+      },
       "fecha": "2026-06-09",
       "sala": "PET/CT",
       "estado": "pendiente",
@@ -174,7 +239,13 @@
       "par_id": null,
       "procedure_code": "PET-CT-CIV",
       "descripcion": "PET/CT con 18F-FDG y contraste IV (cabeza y cuello)",
-      "paciente": { "nombre": "Pérez Domínguez, Demo Nueve", "nhc": "100009", "edad": 58, "sexo": "M", "fecha_nac": "1967-06-08" },
+      "paciente": {
+        "nombre": "Pérez Domínguez, Demo Nueve",
+        "nhc": "100009",
+        "edad": 58,
+        "sexo": "M",
+        "fecha_nac": "1967-06-08"
+      },
       "fecha": "2026-06-08",
       "sala": "PET/CT",
       "estado": "pendiente",
@@ -194,14 +265,24 @@
       "par_id": null,
       "procedure_code": "PET-CT",
       "descripcion": "PET/CT con 18F-FDG (cuerpo entero)",
-      "paciente": { "nombre": "Rodríguez Marrero, Demo Diez", "nhc": "100010", "edad": 66, "sexo": "F", "fecha_nac": "1959-01-15" },
+      "paciente": {
+        "nombre": "Rodríguez Marrero, Demo Diez",
+        "nhc": "100010",
+        "edad": 66,
+        "sexo": "F",
+        "fecha_nac": "1959-01-15"
+      },
       "fecha": "2026-06-05",
       "sala": "PET/CT",
       "estado": "pendiente",
       "motivo_raw": "mujer 66 ca colon sigma operado 2025. elevacion CEA. TAC con dudosa lesion hepatica. caracterizar. valorar respuesta no, descartar recidiva",
       "motivo_refinado": "Mujer de 66 años con antecedente de carcinoma de colon sigmoide intervenido (2025), con elevación de CEA y lesión hepática dudosa en TC. Se solicita PET/CT para descartar recidiva y caracterizar la lesión hepática.",
       "previos": [
-        { "fecha": "2025-09-22", "descripcion": "PET/CT con 18F-FDG", "resumen": "Cambios postquirúrgicos en sigma sin captación patológica. Sin evidencia de enfermedad a distancia." }
+        {
+          "fecha": "2025-09-22",
+          "descripcion": "PET/CT con 18F-FDG",
+          "resumen": "Cambios postquirúrgicos en sigma sin captación patológica. Sin evidencia de enfermedad a distancia."
+        }
       ],
       "dictado_ejemplo": "elevacion CEA. comparo con previo. lesion hepatica en segmento VII captante suv 9 nueva, compatible con metastasis. anastomosis sin recidiva. resto limpio",
       "informe_prebaked": "Estudio PET/TC con 18F-FDG del 05/06/2026:\n\nMotivo de consulta:\nMujer de 66 años con carcinoma de colon sigmoide intervenido, con elevación de CEA y lesión hepática dudosa en TC. Se solicita estudio PET/CT para descartar recidiva.\n\nGlucemia en ayunas: 90 mg/dl\n\nInforme:\nSe realiza estudio a los 60 minutos de la inyección intravenosa de 158 MBq de 18F-FDG, obteniendo imágenes desde vértex craneal a tercio superior de miembros inferiores.\nSe compara con estudio previo del 22/09/2025.\n\nLesión hepática de nueva aparición en el segmento VII con aumento patológico de la captación del radiofármaco (SUV máx. 9,3), compatible con depósito secundario.\nLos cambios postquirúrgicos en la anastomosis sigmoidea no muestran captación patológica, sin datos de recidiva local.\nNo se observan adenopatías de tamaño significativo ni captación patológica en cadenas ganglionares retroperitoneales ni mesentéricas.\nNo se observan focos hipermetabólicos en el esqueleto óseo.\n\nDistribución fisiológica del radiofármaco en el resto de estructuras incluidas en el estudio, sin observar otros focos hipermetabólicos compatibles con tejido tumoral viable con afinidad por la 18F-FDG.\n\nConclusión:\nDepósito secundario hepático único en el segmento VII, de nueva aparición.\nSin datos de recidiva local en la anastomosis.",
@@ -216,14 +297,24 @@
       "par_id": null,
       "procedure_code": "PET-CT",
       "descripcion": "PET/CT con 18F-FDG (interim linfoma)",
-      "paciente": { "nombre": "González Trujillo, Demo Once", "nhc": "100011", "edad": 47, "sexo": "F", "fecha_nac": "1978-03-25" },
+      "paciente": {
+        "nombre": "González Trujillo, Demo Once",
+        "nhc": "100011",
+        "edad": 47,
+        "sexo": "F",
+        "fecha_nac": "1978-03-25"
+      },
       "fecha": "2026-06-04",
       "sala": "PET/CT",
       "estado": "pendiente",
       "motivo_raw": "mujer 47 LH tras 2 ciclos ABVD. PET interim. valorar respuesta precoz. deauville",
       "motivo_refinado": "Mujer de 47 años con linfoma de Hodgkin tras 2 ciclos de ABVD. Se solicita PET/CT interim para valoración de respuesta precoz (escala de Deauville).",
       "previos": [
-        { "fecha": "2026-04-08", "descripcion": "PET/CT con 18F-FDG (estadificación)", "resumen": "Adenopatías cervicales y mediastínicas hipermetabólicas (SUV máx. 15). Estadio II." }
+        {
+          "fecha": "2026-04-08",
+          "descripcion": "PET/CT con 18F-FDG (estadificación)",
+          "resumen": "Adenopatías cervicales y mediastínicas hipermetabólicas (SUV máx. 15). Estadio II."
+        }
       ],
       "dictado_ejemplo": "interim 2 ciclos. comparo con estadificacion. residual mediastinica capta algo mas que el higado, suv 4.5, deauville 4. respuesta parcial",
       "informe_prebaked": "Estudio PET/TC con 18F-FDG del 04/06/2026:\n\nMotivo de consulta:\nMujer de 47 años con linfoma de Hodgkin tras 2 ciclos de ABVD. Se solicita estudio PET/CT interim para valoración de respuesta precoz.\n\nGlucemia en ayunas: 86 mg/dl\n\nInforme:\nSe realiza estudio a los 60 minutos de la inyección intravenosa de 162 MBq de 18F-FDG, obteniendo imágenes desde vértex craneal a tercio superior de miembros inferiores.\nSe compara con estudio previo del 08/04/2026.\n\nValores de referencia: SUVmax hígado: 3,2; SUVmax mediastino: 2,3\n\nMarcada disminución de la captación en las adenopatías mediastínicas respecto al estudio previo, persistiendo captación residual de intensidad moderadamente superior a la hepática (SUV máx. 4,5; Deauville 4).\nResolución completa de la captación en las adenopatías cervicales.\nLa captación hepatoesplénica es homogénea, sin identificarse focos patológicos.\n\nDistribución fisiológica del radiofármaco en el resto de estructuras incluidas en el estudio.\n\nImpresión diagnóstica:\nRespuesta metabólica parcial. Captación residual mediastínica con puntuación de Deauville 4; se recomienda valoración evolutiva.",
@@ -238,7 +329,13 @@
       "par_id": null,
       "procedure_code": "PET-CEREBRAL",
       "descripcion": "PET cerebral con 18F-FDG (epilepsia)",
-      "paciente": { "nombre": "Santos Vega, Demo Doce", "nhc": "100012", "edad": 29, "sexo": "M", "fecha_nac": "1996-11-11" },
+      "paciente": {
+        "nombre": "Santos Vega, Demo Doce",
+        "nhc": "100012",
+        "edad": 29,
+        "sexo": "M",
+        "fecha_nac": "1996-11-11"
+      },
       "fecha": "2026-06-03",
       "sala": "PET/CT",
       "estado": "pendiente",
@@ -258,7 +355,13 @@
       "par_id": null,
       "procedure_code": "PET-CT",
       "descripcion": "PET/CT con 18F-FDG (cuerpo entero)",
-      "paciente": { "nombre": "Ojeda Cruz, Demo Trece", "nhc": "100013", "edad": 74, "sexo": "M", "fecha_nac": "1951-12-01" },
+      "paciente": {
+        "nombre": "Ojeda Cruz, Demo Trece",
+        "nhc": "100013",
+        "edad": 74,
+        "sexo": "M",
+        "fecha_nac": "1951-12-01"
+      },
       "fecha": "2026-06-02",
       "sala": "PET/CT",
       "estado": "pendiente",
@@ -278,14 +381,24 @@
       "par_id": null,
       "procedure_code": "PET-CT-CIV",
       "descripcion": "PET/CT con 18F-FDG y contraste IV (cuerpo entero)",
-      "paciente": { "nombre": "Torres Naranjo, Demo Catorce", "nhc": "100014", "edad": 69, "sexo": "F", "fecha_nac": "1956-07-30" },
+      "paciente": {
+        "nombre": "Torres Naranjo, Demo Catorce",
+        "nhc": "100014",
+        "edad": 69,
+        "sexo": "F",
+        "fecha_nac": "1956-07-30"
+      },
       "fecha": "2026-05-29",
       "sala": "PET/CT",
       "estado": "pendiente",
       "motivo_raw": "mujer 69 ca pancreas cabeza tras QT. reevaluacion. con contraste. valorar resecabilidad y M1 hepaticas",
       "motivo_refinado": "Mujer de 69 años con adenocarcinoma de cabeza de páncreas tras quimioterapia. Se solicita PET/CT con contraste IV para reevaluación, valorando resecabilidad y enfermedad metastásica hepática.",
       "previos": [
-        { "fecha": "2026-02-12", "descripcion": "PET/CT con 18F-FDG", "resumen": "Tumoración en cabeza pancreática hipermetabólica (SUV máx. 11) con contacto vascular. Sin metástasis." }
+        {
+          "fecha": "2026-02-12",
+          "descripcion": "PET/CT con 18F-FDG",
+          "resumen": "Tumoración en cabeza pancreática hipermetabólica (SUV máx. 11) con contacto vascular. Sin metástasis."
+        }
       ],
       "dictado_ejemplo": "reevaluacion pancreas con contraste. la tumoracion capta menos suv 6 respuesta parcial. aparece foco hepatico segmento IV captante suv 7 nuevo, sospechoso de metastasis. enfermedad metastasica nueva",
       "informe_prebaked": "Estudio PET/TC con 18F-FDG y contraste intravenoso del 29/05/2026:\n\nMotivo de consulta:\nMujer de 69 años con adenocarcinoma de cabeza de páncreas tras quimioterapia. Se solicita estudio PET/CT para reevaluación.\n\nGlucemia en ayunas: 112 mg/dl\n\nInforme:\nSe realiza estudio a los 60 minutos de la inyección intravenosa de 154 MBq de 18F-FDG, con administración de contraste yodado intravenoso, obteniendo imágenes desde vértex craneal a tercio superior de miembros inferiores.\nSe compara con estudio previo del 12/02/2026.\n\nDisminución de la captación del radiofármaco en la tumoración de cabeza pancreática respecto al estudio previo (SUV máx. actual 6,2; previo 11,0), en relación con respuesta parcial.\nFoco hepático de nueva aparición en el segmento IV con captación patológica del radiofármaco (SUV máx. 7,1), sugestivo de depósito secundario.\nNo se observan adenopatías de tamaño significativo ni captación patológica en cadenas ganglionares retroperitoneales.\nNo se observan focos hipermetabólicos en el esqueleto óseo.\n\nDistribución fisiológica del radiofármaco en el resto de estructuras incluidas en el estudio.\n\nConclusión:\nRespuesta metabólica parcial del tumor primario pancreático, con aparición de depósito secundario hepático en el segmento IV (progresión a distancia).",
@@ -300,21 +413,30 @@
       "par_id": null,
       "procedure_code": "PET-CT",
       "descripcion": "PET/CT con 18F-FDG (cuerpo entero)",
-      "paciente": { "nombre": "Sánchez Brito, Demo Quince", "nhc": "100015", "edad": 55, "sexo": "F", "fecha_nac": "1970-05-18" },
+      "paciente": {
+        "nombre": "Sánchez Brito, Demo Quince",
+        "nhc": "100015",
+        "edad": 55,
+        "sexo": "F",
+        "fecha_nac": "1970-05-18"
+      },
       "fecha": "2026-05-28",
       "sala": "PET/CT",
       "estado": "pendiente",
       "motivo_raw": "mujer 55 carcinoma de ovario seroso alto grado tras cirugia citorreductora y QT. elevacion Ca125. reestadificacion carcinomatosis",
       "motivo_refinado": "Mujer de 55 años con carcinoma seroso de ovario de alto grado tras cirugía citorreductora y quimioterapia, con elevación de Ca 125. Se solicita PET/CT para reestadificación y valoración de carcinomatosis peritoneal.",
       "previos": [
-        { "fecha": "2025-11-30", "descripcion": "PET/CT con 18F-FDG", "resumen": "Sin evidencia de enfermedad tumoral viable tras tratamiento." }
+        {
+          "fecha": "2025-11-30",
+          "descripcion": "PET/CT con 18F-FDG",
+          "resumen": "Sin evidencia de enfermedad tumoral viable tras tratamiento."
+        }
       ],
       "dictado_ejemplo": "elevacion ca125. comparo previo. implantes peritoneales captantes en gotiera paracolica derecha y epiplon suv 8 nuevos. adenopatia retroperitoneal captante. recidiva con carcinomatosis",
       "informe_prebaked": "Estudio PET/TC con 18F-FDG del 28/05/2026:\n\nMotivo de consulta:\nMujer de 55 años con carcinoma seroso de ovario de alto grado tras cirugía citorreductora y quimioterapia, con elevación de Ca 125. Se solicita estudio PET/CT para reestadificación.\n\nGlucemia en ayunas: 91 mg/dl\n\nInforme:\nSe realiza estudio a los 60 minutos de la inyección intravenosa de 160 MBq de 18F-FDG, obteniendo imágenes desde vértex craneal a tercio superior de miembros inferiores.\nSe compara con estudio previo del 30/11/2025.\n\nImplantes peritoneales hipermetabólicos de nueva aparición en gotiera paracólica derecha y epiplón (SUV máx. 8,2), compatibles con carcinomatosis peritoneal.\nAdenopatía retroperitoneal interaortocava con captación patológica (SUV máx. 5,9).\nLa captación hepatoesplénica es homogénea, sin identificarse focos patológicos.\nNo se observan focos hipermetabólicos en el esqueleto óseo.\n\nDistribución fisiológica del radiofármaco en el resto de estructuras incluidas en el estudio, sin observar otros focos hipermetabólicos.\n\nConclusión:\nRecidiva tumoral con carcinomatosis peritoneal y afectación ganglionar retroperitoneal, de nueva aparición respecto al estudio previo.",
       "anamnesis": null,
       "protocolo_campos": null
     },
-
     {
       "id": 16,
       "tipo_grupo": "cardio",
@@ -323,7 +445,13 @@
       "par_id": 1,
       "procedure_code": "SPECT-MIO",
       "descripcion": "SPECT de perfusión miocárdica en reposo",
-      "paciente": { "nombre": "Hidalgo Pérez, Demo Cardio A", "nhc": "200001", "edad": 64, "sexo": "M", "fecha_nac": "1961-09-09" },
+      "paciente": {
+        "nombre": "Hidalgo Pérez, Demo Cardio A",
+        "nhc": "200001",
+        "edad": 64,
+        "sexo": "M",
+        "fecha_nac": "1961-09-09"
+      },
       "fecha": "2026-06-15",
       "sala": "GAMMA 1",
       "estado": "pendiente",
@@ -338,15 +466,55 @@
         "protocolo": "Farmacologico",
         "peso_kg": 88,
         "altura_cm": 172,
-        "eac": { "estado": "Sospecha", "vasos": "", "infarto": "", "ritmo": "" },
+        "eac": {
+          "estado": "Sospecha",
+          "vasos": "",
+          "infarto": "",
+          "ritmo": ""
+        },
         "motivo_exploracion": "Dolor torácico de esfuerzo, sospecha de cardiopatía isquémica.",
-        "sintomas": { "presenta": true, "disnea": true, "dolor_toracico": true, "tipo_dolor": "Angina típica", "palpitaciones": false, "sincope": false, "otros": "" },
-        "antecedentes": { "hta": true, "hipercolesterolemia": true, "diabetes": true, "tipo_diabetes": "DNID", "tabaco": false, "epoc": false, "irc": false, "obesidad": true, "alergias": "", "otros": "" },
+        "sintomas": {
+          "presenta": true,
+          "disnea": true,
+          "dolor_toracico": true,
+          "tipo_dolor": "Angina típica",
+          "palpitaciones": false,
+          "sincope": false,
+          "otros": ""
+        },
+        "antecedentes": {
+          "hta": true,
+          "hipercolesterolemia": true,
+          "diabetes": true,
+          "tipo_diabetes": "DNID",
+          "tabaco": false,
+          "epoc": false,
+          "irc": false,
+          "obesidad": true,
+          "alergias": "",
+          "otros": ""
+        },
         "tratamiento": [
-          { "farmaco": "AAS", "dosis": "100 mg", "posologia": "1-0-0" },
-          { "farmaco": "Atorvastatina", "dosis": "40 mg", "posologia": "0-0-1" },
-          { "farmaco": "Metformina", "dosis": "850 mg", "posologia": "1-0-1" },
-          { "farmaco": "Bisoprolol", "dosis": "2,5 mg", "posologia": "1-0-0" }
+          {
+            "farmaco": "AAS",
+            "dosis": "100 mg",
+            "posologia": "1-0-0"
+          },
+          {
+            "farmaco": "Atorvastatina",
+            "dosis": "40 mg",
+            "posologia": "0-0-1"
+          },
+          {
+            "farmaco": "Metformina",
+            "dosis": "850 mg",
+            "posologia": "1-0-1"
+          },
+          {
+            "farmaco": "Bisoprolol",
+            "dosis": "2,5 mg",
+            "posologia": "1-0-0"
+          }
         ]
       },
       "protocolo_campos": null
@@ -359,7 +527,13 @@
       "par_id": 1,
       "procedure_code": "SPECT-MIO",
       "descripcion": "SPECT de perfusión miocárdica tras esfuerzo farmacológico",
-      "paciente": { "nombre": "Hidalgo Pérez, Demo Cardio A", "nhc": "200001", "edad": 64, "sexo": "M", "fecha_nac": "1961-09-09" },
+      "paciente": {
+        "nombre": "Hidalgo Pérez, Demo Cardio A",
+        "nhc": "200001",
+        "edad": 64,
+        "sexo": "M",
+        "fecha_nac": "1961-09-09"
+      },
       "fecha": "2026-06-18",
       "sala": "GAMMA 1",
       "estado": "pendiente",
@@ -374,22 +548,80 @@
         "protocolo": "Farmacologico",
         "peso_kg": 88,
         "altura_cm": 172,
-        "eac": { "estado": "Sospecha", "vasos": "", "infarto": "", "ritmo": "" },
+        "eac": {
+          "estado": "Sospecha",
+          "vasos": "",
+          "infarto": "",
+          "ritmo": ""
+        },
         "motivo_exploracion": "Dolor torácico de esfuerzo, sospecha de cardiopatía isquémica.",
-        "sintomas": { "presenta": true, "disnea": true, "dolor_toracico": true, "tipo_dolor": "Angina típica", "palpitaciones": false, "sincope": false, "otros": "" },
-        "antecedentes": { "hta": true, "hipercolesterolemia": true, "diabetes": true, "tipo_diabetes": "DNID", "tabaco": false, "epoc": false, "irc": false, "obesidad": true, "alergias": "", "otros": "" },
+        "sintomas": {
+          "presenta": true,
+          "disnea": true,
+          "dolor_toracico": true,
+          "tipo_dolor": "Angina típica",
+          "palpitaciones": false,
+          "sincope": false,
+          "otros": ""
+        },
+        "antecedentes": {
+          "hta": true,
+          "hipercolesterolemia": true,
+          "diabetes": true,
+          "tipo_diabetes": "DNID",
+          "tabaco": false,
+          "epoc": false,
+          "irc": false,
+          "obesidad": true,
+          "alergias": "",
+          "otros": ""
+        },
         "tratamiento": [
-          { "farmaco": "AAS", "dosis": "100 mg", "posologia": "1-0-0" },
-          { "farmaco": "Atorvastatina", "dosis": "40 mg", "posologia": "0-0-1" },
-          { "farmaco": "Metformina", "dosis": "850 mg", "posologia": "1-0-1" },
-          { "farmaco": "Bisoprolol", "dosis": "2,5 mg", "posologia": "1-0-0" }
+          {
+            "farmaco": "AAS",
+            "dosis": "100 mg",
+            "posologia": "1-0-0"
+          },
+          {
+            "farmaco": "Atorvastatina",
+            "dosis": "40 mg",
+            "posologia": "0-0-1"
+          },
+          {
+            "farmaco": "Metformina",
+            "dosis": "850 mg",
+            "posologia": "1-0-1"
+          },
+          {
+            "farmaco": "Bisoprolol",
+            "dosis": "2,5 mg",
+            "posologia": "1-0-0"
+          }
         ]
       },
       "protocolo_campos": {
         "protocolo": "Farmacologico",
-        "fc_reposo": 72, "ta_reposo": "138/82", "fc_maxima": 108, "fc_final": 94, "ta_final": "142/85",
-        "fevi": 58, "vtd": 102, "vts": 43, "fevi_estres": 55, "vtd_estres": 108, "tid": 1.05, "sss": 8, "srs": 2, "sds": 6,
-        "mets": null, "etapa_bruce": null, "duracion_min": null, "motivo_parada": null, "pct_fc_max": null, "ecg_cambios": null, "ecg_tipos": null
+        "fc_reposo": 72,
+        "ta_reposo": "138/82",
+        "fc_maxima": 108,
+        "fc_final": 94,
+        "ta_final": "142/85",
+        "fevi": 58,
+        "vtd": 102,
+        "vts": 43,
+        "fevi_estres": 55,
+        "vtd_estres": 108,
+        "tid": 1.05,
+        "sss": 8,
+        "srs": 2,
+        "sds": 6,
+        "mets": null,
+        "etapa_bruce": null,
+        "duracion_min": null,
+        "motivo_parada": null,
+        "pct_fc_max": null,
+        "ecg_cambios": null,
+        "ecg_tipos": null
       }
     },
     {
@@ -400,7 +632,13 @@
       "par_id": 2,
       "procedure_code": "SPECT-MIO",
       "descripcion": "SPECT de perfusión miocárdica en reposo",
-      "paciente": { "nombre": "Reyes Domínguez, Demo Cardio B", "nhc": "200002", "edad": 71, "sexo": "F", "fecha_nac": "1954-03-17" },
+      "paciente": {
+        "nombre": "Reyes Domínguez, Demo Cardio B",
+        "nhc": "200002",
+        "edad": 71,
+        "sexo": "F",
+        "fecha_nac": "1954-03-17"
+      },
       "fecha": "2026-06-10",
       "sala": "GAMMA 2",
       "estado": "pendiente",
@@ -415,15 +653,55 @@
         "protocolo": "Farmacologico",
         "peso_kg": 70,
         "altura_cm": 158,
-        "eac": { "estado": "Conocida", "vasos": "Enfermedad de coronaria derecha revascularizada con stent en 2019", "infarto": "Infarto inferior antiguo", "ritmo": "" },
+        "eac": {
+          "estado": "Conocida",
+          "vasos": "Enfermedad de coronaria derecha revascularizada con stent en 2019",
+          "infarto": "Infarto inferior antiguo",
+          "ritmo": ""
+        },
         "motivo_exploracion": "Dolor torácico atípico, valorar isquemia residual.",
-        "sintomas": { "presenta": true, "disnea": false, "dolor_toracico": true, "tipo_dolor": "Atípico", "palpitaciones": false, "sincope": false, "otros": "" },
-        "antecedentes": { "hta": false, "hipercolesterolemia": true, "diabetes": false, "tipo_diabetes": "", "tabaco": false, "epoc": false, "irc": false, "obesidad": false, "alergias": "", "otros": "Cardiopatía isquémica crónica" },
+        "sintomas": {
+          "presenta": true,
+          "disnea": false,
+          "dolor_toracico": true,
+          "tipo_dolor": "Atípico",
+          "palpitaciones": false,
+          "sincope": false,
+          "otros": ""
+        },
+        "antecedentes": {
+          "hta": false,
+          "hipercolesterolemia": true,
+          "diabetes": false,
+          "tipo_diabetes": "",
+          "tabaco": false,
+          "epoc": false,
+          "irc": false,
+          "obesidad": false,
+          "alergias": "",
+          "otros": "Cardiopatía isquémica crónica"
+        },
         "tratamiento": [
-          { "farmaco": "AAS", "dosis": "100 mg", "posologia": "1-0-0" },
-          { "farmaco": "Clopidogrel", "dosis": "75 mg", "posologia": "1-0-0" },
-          { "farmaco": "Rosuvastatina", "dosis": "20 mg", "posologia": "0-0-1" },
-          { "farmaco": "Ramipril", "dosis": "5 mg", "posologia": "1-0-0" }
+          {
+            "farmaco": "AAS",
+            "dosis": "100 mg",
+            "posologia": "1-0-0"
+          },
+          {
+            "farmaco": "Clopidogrel",
+            "dosis": "75 mg",
+            "posologia": "1-0-0"
+          },
+          {
+            "farmaco": "Rosuvastatina",
+            "dosis": "20 mg",
+            "posologia": "0-0-1"
+          },
+          {
+            "farmaco": "Ramipril",
+            "dosis": "5 mg",
+            "posologia": "1-0-0"
+          }
         ]
       },
       "protocolo_campos": null
@@ -436,7 +714,13 @@
       "par_id": 2,
       "procedure_code": "SPECT-MIO",
       "descripcion": "SPECT de perfusión miocárdica tras esfuerzo farmacológico",
-      "paciente": { "nombre": "Reyes Domínguez, Demo Cardio B", "nhc": "200002", "edad": 71, "sexo": "F", "fecha_nac": "1954-03-17" },
+      "paciente": {
+        "nombre": "Reyes Domínguez, Demo Cardio B",
+        "nhc": "200002",
+        "edad": 71,
+        "sexo": "F",
+        "fecha_nac": "1954-03-17"
+      },
       "fecha": "2026-06-13",
       "sala": "GAMMA 2",
       "estado": "pendiente",
@@ -451,22 +735,80 @@
         "protocolo": "Farmacologico",
         "peso_kg": 70,
         "altura_cm": 158,
-        "eac": { "estado": "Conocida", "vasos": "Enfermedad de coronaria derecha revascularizada con stent en 2019", "infarto": "Infarto inferior antiguo", "ritmo": "" },
+        "eac": {
+          "estado": "Conocida",
+          "vasos": "Enfermedad de coronaria derecha revascularizada con stent en 2019",
+          "infarto": "Infarto inferior antiguo",
+          "ritmo": ""
+        },
         "motivo_exploracion": "Dolor torácico atípico, valorar isquemia residual.",
-        "sintomas": { "presenta": true, "disnea": false, "dolor_toracico": true, "tipo_dolor": "Atípico", "palpitaciones": false, "sincope": false, "otros": "" },
-        "antecedentes": { "hta": false, "hipercolesterolemia": true, "diabetes": false, "tipo_diabetes": "", "tabaco": false, "epoc": false, "irc": false, "obesidad": false, "alergias": "", "otros": "Cardiopatía isquémica crónica" },
+        "sintomas": {
+          "presenta": true,
+          "disnea": false,
+          "dolor_toracico": true,
+          "tipo_dolor": "Atípico",
+          "palpitaciones": false,
+          "sincope": false,
+          "otros": ""
+        },
+        "antecedentes": {
+          "hta": false,
+          "hipercolesterolemia": true,
+          "diabetes": false,
+          "tipo_diabetes": "",
+          "tabaco": false,
+          "epoc": false,
+          "irc": false,
+          "obesidad": false,
+          "alergias": "",
+          "otros": "Cardiopatía isquémica crónica"
+        },
         "tratamiento": [
-          { "farmaco": "AAS", "dosis": "100 mg", "posologia": "1-0-0" },
-          { "farmaco": "Clopidogrel", "dosis": "75 mg", "posologia": "1-0-0" },
-          { "farmaco": "Rosuvastatina", "dosis": "20 mg", "posologia": "0-0-1" },
-          { "farmaco": "Ramipril", "dosis": "5 mg", "posologia": "1-0-0" }
+          {
+            "farmaco": "AAS",
+            "dosis": "100 mg",
+            "posologia": "1-0-0"
+          },
+          {
+            "farmaco": "Clopidogrel",
+            "dosis": "75 mg",
+            "posologia": "1-0-0"
+          },
+          {
+            "farmaco": "Rosuvastatina",
+            "dosis": "20 mg",
+            "posologia": "0-0-1"
+          },
+          {
+            "farmaco": "Ramipril",
+            "dosis": "5 mg",
+            "posologia": "1-0-0"
+          }
         ]
       },
       "protocolo_campos": {
         "protocolo": "Farmacologico",
-        "fc_reposo": 66, "ta_reposo": "145/80", "fc_maxima": 96, "fc_final": 84, "ta_final": "150/82",
-        "fevi": 45, "vtd": 142, "vts": 78, "fevi_estres": 42, "vtd_estres": 150, "tid": 1.12, "sss": 9, "srs": 8, "sds": 1,
-        "mets": null, "etapa_bruce": null, "duracion_min": null, "motivo_parada": null, "pct_fc_max": null, "ecg_cambios": null, "ecg_tipos": null
+        "fc_reposo": 66,
+        "ta_reposo": "145/80",
+        "fc_maxima": 96,
+        "fc_final": 84,
+        "ta_final": "150/82",
+        "fevi": 45,
+        "vtd": 142,
+        "vts": 78,
+        "fevi_estres": 42,
+        "vtd_estres": 150,
+        "tid": 1.12,
+        "sss": 9,
+        "srs": 8,
+        "sds": 1,
+        "mets": null,
+        "etapa_bruce": null,
+        "duracion_min": null,
+        "motivo_parada": null,
+        "pct_fc_max": null,
+        "ecg_cambios": null,
+        "ecg_tipos": null
       }
     },
     {
@@ -477,7 +819,13 @@
       "par_id": 3,
       "procedure_code": "SPECT-MIO",
       "descripcion": "SPECT de perfusión miocárdica en reposo",
-      "paciente": { "nombre": "Navarro León, Demo Cardio C", "nhc": "200003", "edad": 56, "sexo": "M", "fecha_nac": "1969-02-21" },
+      "paciente": {
+        "nombre": "Navarro León, Demo Cardio C",
+        "nhc": "200003",
+        "edad": 56,
+        "sexo": "M",
+        "fecha_nac": "1969-02-21"
+      },
       "fecha": "2026-06-08",
       "sala": "GAMMA 3",
       "estado": "pendiente",
@@ -492,14 +840,50 @@
         "protocolo": "Esfuerzo fisico",
         "peso_kg": 82,
         "altura_cm": 178,
-        "eac": { "estado": "Sospecha", "vasos": "", "infarto": "", "ritmo": "" },
+        "eac": {
+          "estado": "Sospecha",
+          "vasos": "",
+          "infarto": "",
+          "ritmo": ""
+        },
         "motivo_exploracion": "Dolor torácico atípico con ergometría no concluyente.",
-        "sintomas": { "presenta": true, "disnea": false, "dolor_toracico": true, "tipo_dolor": "Atípico", "palpitaciones": false, "sincope": false, "otros": "" },
-        "antecedentes": { "hta": true, "hipercolesterolemia": true, "diabetes": false, "tipo_diabetes": "", "tabaco": true, "epoc": false, "irc": false, "obesidad": false, "alergias": "", "otros": "" },
+        "sintomas": {
+          "presenta": true,
+          "disnea": false,
+          "dolor_toracico": true,
+          "tipo_dolor": "Atípico",
+          "palpitaciones": false,
+          "sincope": false,
+          "otros": ""
+        },
+        "antecedentes": {
+          "hta": true,
+          "hipercolesterolemia": true,
+          "diabetes": false,
+          "tipo_diabetes": "",
+          "tabaco": true,
+          "epoc": false,
+          "irc": false,
+          "obesidad": false,
+          "alergias": "",
+          "otros": ""
+        },
         "tratamiento": [
-          { "farmaco": "Enalapril", "dosis": "10 mg", "posologia": "1-0-0" },
-          { "farmaco": "Simvastatina", "dosis": "20 mg", "posologia": "0-0-1" },
-          { "farmaco": "AAS", "dosis": "100 mg", "posologia": "1-0-0" }
+          {
+            "farmaco": "Enalapril",
+            "dosis": "10 mg",
+            "posologia": "1-0-0"
+          },
+          {
+            "farmaco": "Simvastatina",
+            "dosis": "20 mg",
+            "posologia": "0-0-1"
+          },
+          {
+            "farmaco": "AAS",
+            "dosis": "100 mg",
+            "posologia": "1-0-0"
+          }
         ]
       },
       "protocolo_campos": null
@@ -512,7 +896,13 @@
       "par_id": 3,
       "procedure_code": "SPECT-MIO",
       "descripcion": "SPECT de perfusión miocárdica tras esfuerzo físico",
-      "paciente": { "nombre": "Navarro León, Demo Cardio C", "nhc": "200003", "edad": 56, "sexo": "M", "fecha_nac": "1969-02-21" },
+      "paciente": {
+        "nombre": "Navarro León, Demo Cardio C",
+        "nhc": "200003",
+        "edad": 56,
+        "sexo": "M",
+        "fecha_nac": "1969-02-21"
+      },
       "fecha": "2026-06-11",
       "sala": "GAMMA 3",
       "estado": "pendiente",
@@ -527,21 +917,75 @@
         "protocolo": "Esfuerzo fisico",
         "peso_kg": 82,
         "altura_cm": 178,
-        "eac": { "estado": "Sospecha", "vasos": "", "infarto": "", "ritmo": "" },
+        "eac": {
+          "estado": "Sospecha",
+          "vasos": "",
+          "infarto": "",
+          "ritmo": ""
+        },
         "motivo_exploracion": "Dolor torácico atípico con ergometría no concluyente.",
-        "sintomas": { "presenta": true, "disnea": false, "dolor_toracico": true, "tipo_dolor": "Atípico", "palpitaciones": false, "sincope": false, "otros": "" },
-        "antecedentes": { "hta": true, "hipercolesterolemia": true, "diabetes": false, "tipo_diabetes": "", "tabaco": true, "epoc": false, "irc": false, "obesidad": false, "alergias": "", "otros": "" },
+        "sintomas": {
+          "presenta": true,
+          "disnea": false,
+          "dolor_toracico": true,
+          "tipo_dolor": "Atípico",
+          "palpitaciones": false,
+          "sincope": false,
+          "otros": ""
+        },
+        "antecedentes": {
+          "hta": true,
+          "hipercolesterolemia": true,
+          "diabetes": false,
+          "tipo_diabetes": "",
+          "tabaco": true,
+          "epoc": false,
+          "irc": false,
+          "obesidad": false,
+          "alergias": "",
+          "otros": ""
+        },
         "tratamiento": [
-          { "farmaco": "Enalapril", "dosis": "10 mg", "posologia": "1-0-0" },
-          { "farmaco": "Simvastatina", "dosis": "20 mg", "posologia": "0-0-1" },
-          { "farmaco": "AAS", "dosis": "100 mg", "posologia": "1-0-0" }
+          {
+            "farmaco": "Enalapril",
+            "dosis": "10 mg",
+            "posologia": "1-0-0"
+          },
+          {
+            "farmaco": "Simvastatina",
+            "dosis": "20 mg",
+            "posologia": "0-0-1"
+          },
+          {
+            "farmaco": "AAS",
+            "dosis": "100 mg",
+            "posologia": "1-0-0"
+          }
         ]
       },
       "protocolo_campos": {
         "protocolo": "Esfuerzo fisico",
-        "fc_reposo": 74, "ta_reposo": "128/78", "fc_maxima": 162, "fc_final": 110, "ta_final": "178/86",
-        "fevi": 62, "vtd": 88, "vts": 33, "fevi_estres": 64, "vtd_estres": 85, "tid": 0.98, "sss": 1, "srs": 0, "sds": 1,
-        "mets": 11.2, "etapa_bruce": "Estadio IV", "duracion_min": 9.5, "motivo_parada": "Agotamiento físico", "pct_fc_max": 92, "ecg_cambios": "no", "ecg_tipos": []
+        "fc_reposo": 74,
+        "ta_reposo": "128/78",
+        "fc_maxima": 162,
+        "fc_final": 110,
+        "ta_final": "178/86",
+        "fevi": 62,
+        "vtd": 88,
+        "vts": 33,
+        "fevi_estres": 64,
+        "vtd_estres": 85,
+        "tid": 0.98,
+        "sss": 1,
+        "srs": 0,
+        "sds": 1,
+        "mets": 11.2,
+        "etapa_bruce": "Estadio IV",
+        "duracion_min": 9.5,
+        "motivo_parada": "Agotamiento físico",
+        "pct_fc_max": 92,
+        "ecg_cambios": "no",
+        "ecg_tipos": []
       }
     },
     {
@@ -552,7 +996,13 @@
       "par_id": 4,
       "procedure_code": "SPECT-MIO",
       "descripcion": "SPECT de perfusión miocárdica en reposo",
-      "paciente": { "nombre": "Castro Peña, Demo Cardio D", "nhc": "200004", "edad": 60, "sexo": "M", "fecha_nac": "1965-08-05" },
+      "paciente": {
+        "nombre": "Castro Peña, Demo Cardio D",
+        "nhc": "200004",
+        "edad": 60,
+        "sexo": "M",
+        "fecha_nac": "1965-08-05"
+      },
       "fecha": "2026-06-05",
       "sala": "GAMMA 1",
       "estado": "pendiente",
@@ -567,16 +1017,60 @@
         "protocolo": "Esfuerzo fisico",
         "peso_kg": 90,
         "altura_cm": 175,
-        "eac": { "estado": "Conocida", "vasos": "Estenosis significativa de la arteria descendente anterior proximal, no revascularizada", "infarto": "", "ritmo": "" },
+        "eac": {
+          "estado": "Conocida",
+          "vasos": "Estenosis significativa de la arteria descendente anterior proximal, no revascularizada",
+          "infarto": "",
+          "ritmo": ""
+        },
         "motivo_exploracion": "Angina de esfuerzo, valorar carga isquémica previa a revascularización.",
-        "sintomas": { "presenta": true, "disnea": true, "dolor_toracico": true, "tipo_dolor": "Angina típica", "palpitaciones": false, "sincope": false, "otros": "" },
-        "antecedentes": { "hta": true, "hipercolesterolemia": true, "diabetes": true, "tipo_diabetes": "DID", "tabaco": false, "epoc": false, "irc": false, "obesidad": true, "alergias": "Alergia a contrastes yodados", "otros": "" },
+        "sintomas": {
+          "presenta": true,
+          "disnea": true,
+          "dolor_toracico": true,
+          "tipo_dolor": "Angina típica",
+          "palpitaciones": false,
+          "sincope": false,
+          "otros": ""
+        },
+        "antecedentes": {
+          "hta": true,
+          "hipercolesterolemia": true,
+          "diabetes": true,
+          "tipo_diabetes": "DID",
+          "tabaco": false,
+          "epoc": false,
+          "irc": false,
+          "obesidad": true,
+          "alergias": "Alergia a contrastes yodados",
+          "otros": ""
+        },
         "tratamiento": [
-          { "farmaco": "AAS", "dosis": "100 mg", "posologia": "1-0-0" },
-          { "farmaco": "Atorvastatina", "dosis": "80 mg", "posologia": "0-0-1" },
-          { "farmaco": "Insulina glargina", "dosis": "24 UI", "posologia": "0-0-1" },
-          { "farmaco": "Nitroglicerina", "dosis": "parche 10 mg", "posologia": "1-0-0" },
-          { "farmaco": "Bisoprolol", "dosis": "5 mg", "posologia": "1-0-0" }
+          {
+            "farmaco": "AAS",
+            "dosis": "100 mg",
+            "posologia": "1-0-0"
+          },
+          {
+            "farmaco": "Atorvastatina",
+            "dosis": "80 mg",
+            "posologia": "0-0-1"
+          },
+          {
+            "farmaco": "Insulina glargina",
+            "dosis": "24 UI",
+            "posologia": "0-0-1"
+          },
+          {
+            "farmaco": "Nitroglicerina",
+            "dosis": "parche 10 mg",
+            "posologia": "1-0-0"
+          },
+          {
+            "farmaco": "Bisoprolol",
+            "dosis": "5 mg",
+            "posologia": "1-0-0"
+          }
         ]
       },
       "protocolo_campos": null
@@ -589,7 +1083,13 @@
       "par_id": 4,
       "procedure_code": "SPECT-MIO",
       "descripcion": "SPECT de perfusión miocárdica tras esfuerzo físico",
-      "paciente": { "nombre": "Castro Peña, Demo Cardio D", "nhc": "200004", "edad": 60, "sexo": "M", "fecha_nac": "1965-08-05" },
+      "paciente": {
+        "nombre": "Castro Peña, Demo Cardio D",
+        "nhc": "200004",
+        "edad": 60,
+        "sexo": "M",
+        "fecha_nac": "1965-08-05"
+      },
       "fecha": "2026-06-09",
       "sala": "GAMMA 1",
       "estado": "pendiente",
@@ -604,26 +1104,89 @@
         "protocolo": "Esfuerzo fisico",
         "peso_kg": 90,
         "altura_cm": 175,
-        "eac": { "estado": "Conocida", "vasos": "Estenosis significativa de la arteria descendente anterior proximal, no revascularizada", "infarto": "", "ritmo": "" },
+        "eac": {
+          "estado": "Conocida",
+          "vasos": "Estenosis significativa de la arteria descendente anterior proximal, no revascularizada",
+          "infarto": "",
+          "ritmo": ""
+        },
         "motivo_exploracion": "Angina de esfuerzo, valorar carga isquémica previa a revascularización.",
-        "sintomas": { "presenta": true, "disnea": true, "dolor_toracico": true, "tipo_dolor": "Angina típica", "palpitaciones": false, "sincope": false, "otros": "" },
-        "antecedentes": { "hta": true, "hipercolesterolemia": true, "diabetes": true, "tipo_diabetes": "DID", "tabaco": false, "epoc": false, "irc": false, "obesidad": true, "alergias": "Alergia a contrastes yodados", "otros": "" },
+        "sintomas": {
+          "presenta": true,
+          "disnea": true,
+          "dolor_toracico": true,
+          "tipo_dolor": "Angina típica",
+          "palpitaciones": false,
+          "sincope": false,
+          "otros": ""
+        },
+        "antecedentes": {
+          "hta": true,
+          "hipercolesterolemia": true,
+          "diabetes": true,
+          "tipo_diabetes": "DID",
+          "tabaco": false,
+          "epoc": false,
+          "irc": false,
+          "obesidad": true,
+          "alergias": "Alergia a contrastes yodados",
+          "otros": ""
+        },
         "tratamiento": [
-          { "farmaco": "AAS", "dosis": "100 mg", "posologia": "1-0-0" },
-          { "farmaco": "Atorvastatina", "dosis": "80 mg", "posologia": "0-0-1" },
-          { "farmaco": "Insulina glargina", "dosis": "24 UI", "posologia": "0-0-1" },
-          { "farmaco": "Nitroglicerina", "dosis": "parche 10 mg", "posologia": "1-0-0" },
-          { "farmaco": "Bisoprolol", "dosis": "5 mg", "posologia": "1-0-0" }
+          {
+            "farmaco": "AAS",
+            "dosis": "100 mg",
+            "posologia": "1-0-0"
+          },
+          {
+            "farmaco": "Atorvastatina",
+            "dosis": "80 mg",
+            "posologia": "0-0-1"
+          },
+          {
+            "farmaco": "Insulina glargina",
+            "dosis": "24 UI",
+            "posologia": "0-0-1"
+          },
+          {
+            "farmaco": "Nitroglicerina",
+            "dosis": "parche 10 mg",
+            "posologia": "1-0-0"
+          },
+          {
+            "farmaco": "Bisoprolol",
+            "dosis": "5 mg",
+            "posologia": "1-0-0"
+          }
         ]
       },
       "protocolo_campos": {
         "protocolo": "Esfuerzo fisico",
-        "fc_reposo": 70, "ta_reposo": "150/88", "fc_maxima": 128, "fc_final": 102, "ta_final": "170/92",
-        "fevi": 50, "vtd": 118, "vts": 59, "fevi_estres": 44, "vtd_estres": 138, "tid": 1.28, "sss": 16, "srs": 4, "sds": 12,
-        "mets": 6.5, "etapa_bruce": "Estadio II", "duracion_min": 5.2, "motivo_parada": "Angina y descenso del ST", "pct_fc_max": 80, "ecg_cambios": "si", "ecg_tipos": ["Descenso del ST descendente en cara anterior"]
+        "fc_reposo": 70,
+        "ta_reposo": "150/88",
+        "fc_maxima": 128,
+        "fc_final": 102,
+        "ta_final": "170/92",
+        "fevi": 50,
+        "vtd": 118,
+        "vts": 59,
+        "fevi_estres": 44,
+        "vtd_estres": 138,
+        "tid": 1.28,
+        "sss": 16,
+        "srs": 4,
+        "sds": 12,
+        "mets": 6.5,
+        "etapa_bruce": "Estadio II",
+        "duracion_min": 5.2,
+        "motivo_parada": "Angina y descenso del ST",
+        "pct_fc_max": 80,
+        "ecg_cambios": "si",
+        "ecg_tipos": [
+          "Descenso del ST descendente en cara anterior"
+        ]
       }
     },
-
     {
       "id": 24,
       "tipo_grupo": "mn",
@@ -632,7 +1195,13 @@
       "par_id": null,
       "procedure_code": "OSEO",
       "descripcion": "Rastreo óseo de cuerpo entero con 99mTc-HDP",
-      "paciente": { "nombre": "Acosta Padrón, Demo MN Uno", "nhc": "300001", "edad": 68, "sexo": "M", "fecha_nac": "1957-04-22" },
+      "paciente": {
+        "nombre": "Acosta Padrón, Demo MN Uno",
+        "nhc": "300001",
+        "edad": 68,
+        "sexo": "M",
+        "fecha_nac": "1957-04-22"
+      },
       "fecha": "2026-06-16",
       "sala": "GAMMA 2",
       "estado": "pendiente",
@@ -652,7 +1221,13 @@
       "par_id": null,
       "procedure_code": "TIROIDES",
       "descripcion": "Gammagrafía tiroidea con 99mTc-pertecnetato",
-      "paciente": { "nombre": "Marrero Vega, Demo MN Dos", "nhc": "300002", "edad": 45, "sexo": "F", "fecha_nac": "1980-10-13" },
+      "paciente": {
+        "nombre": "Marrero Vega, Demo MN Dos",
+        "nhc": "300002",
+        "edad": 45,
+        "sexo": "F",
+        "fecha_nac": "1980-10-13"
+      },
       "fecha": "2026-06-15",
       "sala": "GAMMA 3",
       "estado": "pendiente",
@@ -672,7 +1247,13 @@
       "par_id": null,
       "procedure_code": "MAG3",
       "descripcion": "Renograma diurético con 99mTc-MAG3",
-      "paciente": { "nombre": "Ramos Herrera, Demo MN Tres", "nhc": "300003", "edad": 34, "sexo": "M", "fecha_nac": "1991-06-28" },
+      "paciente": {
+        "nombre": "Ramos Herrera, Demo MN Tres",
+        "nhc": "300003",
+        "edad": 34,
+        "sexo": "M",
+        "fecha_nac": "1991-06-28"
+      },
       "fecha": "2026-06-12",
       "sala": "GAMMA 1",
       "estado": "pendiente",
@@ -692,7 +1273,13 @@
       "par_id": null,
       "procedure_code": "DATSCAN",
       "descripcion": "SPECT cerebral de transportador de dopamina (DaTSCAN, I123-Ioflupano)",
-      "paciente": { "nombre": "Guerra Sosa, Demo MN Cuatro", "nhc": "300004", "edad": 73, "sexo": "F", "fecha_nac": "1952-12-09" },
+      "paciente": {
+        "nombre": "Guerra Sosa, Demo MN Cuatro",
+        "nhc": "300004",
+        "edad": 73,
+        "sexo": "F",
+        "fecha_nac": "1952-12-09"
+      },
       "fecha": "2026-06-10",
       "sala": "GAMMA 2",
       "estado": "pendiente",
@@ -712,14 +1299,24 @@
       "par_id": null,
       "procedure_code": "MUGA",
       "descripcion": "Ventriculografía isotópica de equilibrio (MUGA)",
-      "paciente": { "nombre": "Espino Cárdenes, Demo MN Cinco", "nhc": "300005", "edad": 52, "sexo": "F", "fecha_nac": "1973-01-26" },
+      "paciente": {
+        "nombre": "Espino Cárdenes, Demo MN Cinco",
+        "nhc": "300005",
+        "edad": 52,
+        "sexo": "F",
+        "fecha_nac": "1973-01-26"
+      },
       "fecha": "2026-06-08",
       "sala": "GAMMA 3",
       "estado": "pendiente",
       "motivo_raw": "mujer 52 ca mama HER2+ en tto con trastuzumab. control de FEVI por cardiotoxicidad. previo basal",
       "motivo_refinado": "Mujer de 52 años con carcinoma de mama HER2 positivo en tratamiento con trastuzumab. Se solicita ventriculografía isotópica para control de FEVI por riesgo de cardiotoxicidad.",
       "previos": [
-        { "fecha": "2026-02-15", "descripcion": "Ventriculografía isotópica (MUGA) basal", "resumen": "FEVI del 64%, contractilidad global y segmentaria conservadas." }
+        {
+          "fecha": "2026-02-15",
+          "descripcion": "Ventriculografía isotópica (MUGA) basal",
+          "resumen": "FEVI del 64%, contractilidad global y segmentaria conservadas."
+        }
       ],
       "dictado_ejemplo": "control de fevi por trastuzumab. fevi 58, descenso de 6 puntos respecto a la basal pero dentro de la normalidad y sin caida significativa. contractilidad conservada",
       "informe_prebaked": "Ventriculografía isotópica de equilibrio (MUGA) del 08/06/2026:\n\nMotivo de consulta:\nMujer de 52 años con carcinoma de mama HER2 positivo en tratamiento con trastuzumab. Se solicita ventriculografía isotópica para control de FEVI.\n\nTécnica:\nSe realiza estudio gammagráfico sincronizado con el electrocardiograma tras el marcaje in vivo de los hematíes con 99mTc-pertecnetato (740 MBq), en proyecciones anterior, OAI y lateral izquierda.\n\nHallazgos:\nFracción de eyección del ventrículo izquierdo: 58%.\nContractilidad global y segmentaria del ventrículo izquierdo conservadas.\nSe compara con estudio basal del 15/02/2026 (FEVI 64%), objetivándose un descenso de 6 puntos, sin alcanzar criterios de cardiotoxicidad y manteniéndose dentro del intervalo de la normalidad.\n\nConclusión:\nFEVI conservada (58%), con descenso no significativo respecto al estudio basal. Sin criterios de cardiotoxicidad en el momento actual.",
@@ -734,7 +1331,13 @@
       "par_id": null,
       "procedure_code": "SPECT-OSEO",
       "descripcion": "SPECT-TC óseo de columna lumbar con 99mTc-HDP",
-      "paciente": { "nombre": "Florido Quintana, Demo MN Seis", "nhc": "300006", "edad": 41, "sexo": "M", "fecha_nac": "1985-03-19" },
+      "paciente": {
+        "nombre": "Florido Quintana, Demo MN Seis",
+        "nhc": "300006",
+        "edad": 41,
+        "sexo": "M",
+        "fecha_nac": "1985-03-19"
+      },
       "fecha": "2026-06-04",
       "sala": "GAMMA 1",
       "estado": "pendiente",
@@ -754,7 +1357,13 @@
       "par_id": null,
       "procedure_code": "PARATIROIDES",
       "descripcion": "SPECT-TC de paratiroides con 99mTc-MIBI (doble fase)",
-      "paciente": { "nombre": "Bautista Mendoza, Demo MN Siete", "nhc": "300007", "edad": 58, "sexo": "F", "fecha_nac": "1967-11-30" },
+      "paciente": {
+        "nombre": "Bautista Mendoza, Demo MN Siete",
+        "nhc": "300007",
+        "edad": 58,
+        "sexo": "F",
+        "fecha_nac": "1967-11-30"
+      },
       "fecha": "2026-06-02",
       "sala": "GAMMA 2",
       "estado": "pendiente",

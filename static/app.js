@@ -72,7 +72,7 @@ function renderWorklist(filtro){
 function pintarAccion(e){
   const cell=$("acc-"+e.id); if(!cell) return;
   if(!ASIGNADOS.has(e.id)){
-    cell.innerHTML=`<button class="btn-asignar">+ Asignármelo</button>`;
+    cell.innerHTML=`<button class="btn-mas" title="Asignármelo">+</button>`;
     cell.querySelector("button").onclick=()=>{ ASIGNADOS.add(e.id); persistAsignados(); pintarAccion(e);
       cell.closest("tr").className="asignado"; };
     return;
@@ -141,9 +141,8 @@ function renderPET(e, m){
         <span class="dot"></span>
         <button class="grande" id="btnGrabar">🎙️ Grabar</button>
         <span class="timer" id="timer">00:00</span>
-        <span class="muted small" id="grabEstado"></span>
       </div>
-      <textarea class="grande" id="dictado" placeholder="Aquí aparece la transcripción del dictado…"></textarea>
+      <div class="dictado-estado" id="dictadoEstado"></div>
       <div class="btn-row">
         <button class="secundario" id="btnEjemplo">Usar dictado de ejemplo</button>
         <button class="grande primario" id="btnEstructurar" style="background:linear-gradient(135deg,var(--primary),var(--action-leer));color:#fff">⚙️ Estructurar informe</button>
@@ -169,9 +168,21 @@ function renderPET(e, m){
     el.innerHTML="<strong style='color:var(--action-dictar-hover)'>Refinado IA → </strong>"+esc(r.motivo);
     $("btnRefinar").textContent="✓ Refinado";
   };
-  $("btnEjemplo").onclick=()=>{ $("dictado").value=e.dictado_ejemplo||"(este estudio no trae dictado de ejemplo)"; };
-  conectarGrabacion($("dictado"));
-  $("btnEstructurar").onclick=()=>estructurar(e, $("dictado").value, $("informe"), $("modoBadge"));
+  // dictado oculto (solo estado por partes)
+  const store={bloques:[]};
+  conectarDictado(store, {estadoElId:"dictadoEstado"});
+  $("btnEjemplo").onclick=()=>{ if(e.dictado_ejemplo){ store.bloques=[e.dictado_ejemplo];
+    renderDictEstado("dictadoEstado", store, "Dictado de ejemplo cargado (1 parte)."); }
+    else renderDictEstado("dictadoEstado", store, "Este estudio no trae dictado de ejemplo."); };
+
+  // selección de previos para comparar
+  document.querySelectorAll(".chk-comparar").forEach(chk=>chk.onchange=()=>{
+    chk.closest("details").classList.toggle("seleccionado", chk.checked); });
+
+  $("btnEstructurar").onclick=()=>{
+    const previosSel=[...document.querySelectorAll(".chk-comparar:checked")].map(c=>(e.previos||[])[+c.dataset.i]).filter(Boolean);
+    estructurar(e, dictTexto(store), $("informe"), $("modoBadge"), previosSel);
+  };
   $("btnCopiar").onclick=()=>copiar($("informe").value);
   $("btnGuardar").onclick=()=>guardar(e, $("informe").value);
   if(GUARDADOS[e.id]){ $("informe").value=GUARDADOS[e.id].informe; }
@@ -269,10 +280,9 @@ function renderCardioEsfuerzo(e, m){
         <strong style="color:#6d28d9">🎙️ Dictar campos del protocolo</strong>
         <button class="secundario" id="btnDictarCampos" style="padding:7px 16px">Grabar campos</button>
         <span class="timer" id="timerC">00:00</span>
-        <span class="muted small" id="estadoC"></span>
       </div>
       <div class="ayuda">Dicta los valores, p. ej.: «farmacológico, FEVI 60, VTD 110, SSS 9, SRS 3, FC reposo 70, máxima 92, TA 140/80, TID 1.34». Se rellenan los campos de abajo para que los revises.</div>
-      <textarea id="dictadoCampos" rows="2" placeholder="Transcripción del dictado de campos…" style="margin-top:6px"></textarea>
+      <div class="dictado-estado" id="estadoCamposBox" style="margin-top:6px"></div>
     </div>
 
     <div class="card">
@@ -306,8 +316,8 @@ function renderCardioEsfuerzo(e, m){
       <div class="sec">Impresión visual (dictado)</div>
       <div class="grabar-zona" id="zona"><span class="dot"></span>
         <button class="grande" id="btnGrabar">🎙️ Grabar</button>
-        <span class="timer" id="timer">00:00</span><span class="muted small" id="grabEstado"></span></div>
-      <textarea class="grande" id="dictado" placeholder="Dicta la impresión visual: perfusión, defectos, función…"></textarea>
+        <span class="timer" id="timer">00:00</span></div>
+      <div class="dictado-estado" id="dictadoEstado"></div>
       <div class="btn-row">
         <button class="secundario" id="btnEjemplo">Usar dictado de ejemplo</button>
         <button class="grande primario" id="btnEstructurar" style="background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff">✨ Generar informe</button>
@@ -323,11 +333,17 @@ function renderCardioEsfuerzo(e, m){
       </div>
     </div>`;
 
-  // dictar campos -> transcribe -> parse -> rellena
-  conectarGrabacion($("dictadoCampos"), "btnDictarCampos", "timerC", "estadoC", txt=>parsearCampos(txt));
-  $("btnEjemplo").onclick=()=>{ $("dictado").value=e.dictado_ejemplo||""; };
-  conectarGrabacion($("dictado"));
-  $("btnEstructurar").onclick=()=>estructurar(e, $("dictado").value, $("informe"), $("modoBadge"));
+  // dictar campos -> transcribe (oculto) -> parsea -> rellena inputs
+  const storeCampos={bloques:[]};
+  conectarDictado(storeCampos, {btnId:"btnDictarCampos", timerId:"timerC", estadoElId:"estadoCamposBox",
+    zonaId:"__nozone", onText:st=>{ parsearCampos(dictTexto(st)); renderDictEstado("estadoCamposBox", st, "Campos rellenados ✓"); }});
+
+  // impresión visual (oculta, solo estado)
+  const store={bloques:[]};
+  conectarDictado(store, {estadoElId:"dictadoEstado"});
+  $("btnEjemplo").onclick=()=>{ if(e.dictado_ejemplo){ store.bloques=[e.dictado_ejemplo];
+    renderDictEstado("dictadoEstado", store, "Dictado de ejemplo cargado (1 parte)."); } };
+  $("btnEstructurar").onclick=()=>estructurar(e, dictTexto(store), $("informe"), $("modoBadge"));
   $("btnCopiar").onclick=()=>copiar($("informe").value);
   $("btnGuardar").onclick=()=>guardar(e, $("informe").value);
   if(GUARDADOS[e.id]) $("informe").value=GUARDADOS[e.id].informe;
@@ -335,7 +351,7 @@ function renderCardioEsfuerzo(e, m){
 
 // parser ligero de campos dictados (demo) — rellena inputs por palabras clave
 function parsearCampos(txt){
-  const t=txt.toLowerCase().replace(",",".");
+  const t=txt.toLowerCase().replace(/,/g,".");
   const num=(re)=>{ const mm=t.match(re); return mm?mm[1]:null; };
   const set=(id,v)=>{ if(v!=null && $("pc_"+id)) $("pc_"+id).value=v; };
   set("fevi", num(/fevi\s*(\d{1,3})/));
@@ -347,59 +363,68 @@ function parsearCampos(txt){
   set("fc_reposo", num(/(?:fc\s*)?reposo\s*(\d{2,3})/));
   set("fc_maxima", num(/m[aá]x\w*\s*(\d{2,3})/));
   const ta=t.match(/(\d{2,3})\s*\/\s*(\d{2,3})/); if(ta && $("pc_ta_reposo")) $("pc_ta_reposo").value=ta[1]+"/"+ta[2];
-  $("estadoC").textContent="campos rellenados ✓";
 }
 
 /* ----------------------------------------------- estructurar (Claude) ----- */
-async function estructurar(e, dictado, outEl, badgeEl){
+async function estructurar(e, dictado, outEl, badgeEl, previos){
   outEl.value="Generando informe…";
   badgeEl.innerHTML="";
   try{
     const r=await api("/api/estructurar",{method:"POST",headers:{"content-type":"application/json"},
-      body:JSON.stringify({id:e.id, dictado, modelo:CAP.modelo})});
+      body:JSON.stringify({id:e.id, dictado, modelo:CAP.modelo, previos:previos||[]})});
     outEl.value=r.informe||"(sin respuesta)";
     const directo=(r.modo||"").startsWith("en-directo");
     badgeEl.innerHTML=`<span class="modo-badge ${directo?"directo":"precocinado"}">${esc(r.modo||"")}</span>`;
   }catch(ex){ outEl.value="Error: "+ex; }
 }
 
-/* ------------------------------------------------------- grabación voz ----- */
-function conectarGrabacion(targetTextarea, btnId="btnGrabar", timerId="timer", estadoId="grabEstado", onText=null){
+/* ------------------------------------------------------- grabación voz -----
+   El TEXTO del dictado NO se muestra (como en la app real). Solo se ve el
+   estado: partes transcritas (1, 2, …) y el estado en curso. El texto vive en
+   store.bloques y se usa al estructurar. -------------------------------------*/
+const mmss=s=>String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0");
+
+function renderDictEstado(elId, store, transient){
+  const el=$(elId); if(!el) return;
+  let html=store.bloques.map((b,i)=>`<div class="bloque-linea">✓ Parte ${i+1} transcrita</div>`).join("");
+  if(transient) html+=`<div class="bloque-hint">${esc(transient)}</div>`;
+  if(!html) html=`<div class="bloque-hint">Sin dictado todavía. Pulsa <b>Grabar</b> (puedes dictar en varias partes) o usa el dictado de ejemplo.</div>`;
+  el.innerHTML=html;
+}
+
+function conectarDictado(store, {btnId="btnGrabar", timerId="timer", estadoElId="dictadoEstado", onText=null, zonaId="zona"}={}){
   const btn=$(btnId); if(!btn) return;
+  const zona=$(zonaId);
   let rec=null, chunks=[], t0=0, timer=null;
-  const zona=$("zona");
+  renderDictEstado(estadoElId, store);
   btn.onclick=async()=>{
     if(rec && rec.state==="recording"){ rec.stop(); return; }
-    if(!CAP.voz){
-      if($(estadoId)) $(estadoId).textContent="(voz online no configurada) — usa «dictado de ejemplo»";
-      return;
-    }
+    if(!CAP.voz){ renderDictEstado(estadoElId, store, "Voz online no configurada — usa «dictado de ejemplo»."); return; }
     let stream;
     try{ stream=await navigator.mediaDevices.getUserMedia({audio:true}); }
-    catch(err){ if($(estadoId)) $(estadoId).textContent="micrófono denegado"; return; }
+    catch(err){ renderDictEstado(estadoElId, store, "Micrófono denegado."); return; }
     chunks=[]; rec=new MediaRecorder(stream);
     rec.ondataavailable=ev=>{ if(ev.data.size) chunks.push(ev.data); };
     rec.onstart=()=>{ btn.textContent="⏹ Detener"; if(zona) zona.classList.add("grabando");
-      t0=performance.now(); timer=setInterval(()=>{ const s=Math.floor((performance.now()-t0)/1000);
-        if($(timerId)) $(timerId).textContent=String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0"); },250); };
+      renderDictEstado(estadoElId, store, "● Grabando parte "+(store.bloques.length+1)+"…");
+      t0=performance.now(); timer=setInterval(()=>{ if($(timerId)) $(timerId).textContent=mmss(Math.floor((performance.now()-t0)/1000)); },250); };
     rec.onstop=async()=>{
-      clearInterval(timer); btn.textContent="🎙️ Grabar"; if(zona){zona.classList.remove("grabando");zona.classList.add("procesando");}
-      if($(estadoId)) $(estadoId).textContent="transcribiendo…";
+      clearInterval(timer); btn.textContent="🎙️ Grabar";
+      if(zona){zona.classList.remove("grabando");zona.classList.add("procesando");}
+      renderDictEstado(estadoElId, store, "Transcribiendo parte "+(store.bloques.length+1)+"…");
       stream.getTracks().forEach(t=>t.stop());
-      const blob=new Blob(chunks,{type:"audio/webm"});
-      const fd=new FormData(); fd.append("audio", blob, "audio.webm");
+      const fd=new FormData(); fd.append("audio", new Blob(chunks,{type:"audio/webm"}), "audio.webm");
       try{
-        const r=await fetch("/api/transcribir",{method:"POST",body:fd});
-        const j=await r.json();
-        if(j.texto){ targetTextarea.value=(targetTextarea.value?targetTextarea.value+" ":"")+j.texto;
-          if($(estadoId)) $(estadoId).textContent="✓"; if(onText) onText(targetTextarea.value); }
-        else { if($(estadoId)) $(estadoId).textContent=j.error||"sin texto"; }
-      }catch(ex){ if($(estadoId)) $(estadoId).textContent="error"; }
+        const j=await (await fetch("/api/transcribir",{method:"POST",body:fd})).json();
+        if(j.texto){ store.bloques.push(j.texto); renderDictEstado(estadoElId, store); if(onText) onText(store); }
+        else renderDictEstado(estadoElId, store, j.error||"sin texto");
+      }catch(ex){ renderDictEstado(estadoElId, store, "error de transcripción"); }
       if(zona) zona.classList.remove("procesando");
     };
     rec.start();
   };
 }
+const dictTexto=store=>store.bloques.join(" ").trim();
 
 /* ----------------------------------------------------------- guardar ------- */
 function copiar(txt){ navigator.clipboard.writeText(txt||""); }
