@@ -3,9 +3,9 @@
 Este archivo registra el historial de instrucciones, decisiones de diseño y pasos realizados en el desarrollo del proyecto Informes_Demo.
 
 ## Contexto del Estado Actual
-- **Última tarea completada**: Corregida la fórmula de extensión isquémica (carga por SDS) en los prompts LLM: `SDS/17 × 100` → `SDS/68 × 100` (68 = 17 segmentos × 4). Estaba ×4 inflada. Arreglado en `Informes` (`core/perf_estructurador.py`, `core/perf_ejemplos.py`) y `PerfusionMN` (`core/estructurador_spect.py`, `core/ejemplos_spect_corpus.py`). La calculadora JS de PerfusionMN (`static/app.js`) ya usaba `/68` (era la referencia correcta).
-- **Estado del proyecto**: Cambios aplicados; ficheros Python compilan; cero `/17` vivos. No se tocaron los % de los ejemplos canónicos (ya coherentes con `/68`).
-- **Punto de reanudación / Siguiente paso**: Probar generación en vivo de un informe de perfusión y verificar que el % de isquemia sale acorde a `/68`.
+- **Última tarea completada**: Corregida la fórmula de extensión isquémica (carga por SDS) `SDS/17 × 100` → `SDS/68 × 100` (68 = 17 segmentos × 4; estaba ×4 inflada) en TODOS los prompts LLM: `Informes` (`core/perf_estructurador.py`, `core/perf_ejemplos.py`), `PerfusionMN` (`core/estructurador_spect.py`, `core/ejemplos_spect_corpus.py`) e `Informes_Demo` (`prompt_cardio.txt`). La calculadora JS de PerfusionMN ya usaba `/68` (referencia correcta). Push del repo Informes_Demo hecho (`695cb73`, origin/master).
+- **Estado del proyecto**: Arreglado y verificado: la app carga el prompt con `/68` (test de `_cargar_prompt` OK). Push hecho excluyendo basura de depuración (`chrome_output*.txt`, `si`).
+- **⚠️ PENDIENTE (manual, no automatizable desde aquí)**: `prompt_cardio.txt` está gitignored (IP privada), así que el push NO lleva la corrección a Render. Para arreglar la demo EN VIVO hay que **re-subir `prompt_cardio.txt` corregido como Secret File en el panel de Render** (se monta en `/etc/secrets/`). Si la demo corre en modo pre-cocinado (sin `ANTHROPIC_API_KEY`), no afecta: los prebaked ya son correctos.
 
 ---
 
