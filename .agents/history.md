@@ -4,8 +4,8 @@ Este archivo registra el historial de instrucciones, decisiones de diseño y pas
 
 ## Contexto del Estado Actual
 - **Última tarea completada**: Corregida la fórmula de extensión isquémica (carga por SDS) `SDS/17 × 100` → `SDS/68 × 100` (68 = 17 segmentos × 4; estaba ×4 inflada) en TODOS los prompts LLM: `Informes` (`core/perf_estructurador.py`, `core/perf_ejemplos.py`), `PerfusionMN` (`core/estructurador_spect.py`, `core/ejemplos_spect_corpus.py`) e `Informes_Demo` (`prompt_cardio.txt`). La calculadora JS de PerfusionMN ya usaba `/68` (referencia correcta). Push del repo Informes_Demo hecho (`695cb73`, origin/master).
-- **Estado del proyecto**: Arreglado y verificado: la app carga el prompt con `/68` (test de `_cargar_prompt` OK). Push hecho excluyendo basura de depuración (`chrome_output*.txt`, `si`).
-- **⚠️ PENDIENTE (manual, no automatizable desde aquí)**: `prompt_cardio.txt` está gitignored (IP privada), así que el push NO lleva la corrección a Render. Para arreglar la demo EN VIVO hay que **re-subir `prompt_cardio.txt` corregido como Secret File en el panel de Render** (se monta en `/etc/secrets/`). Si la demo corre en modo pre-cocinado (sin `ANTHROPIC_API_KEY`), no afecta: los prebaked ya son correctos.
+- **Estado del proyecto**: Arreglado, verificado y **desplegado en producción**. La app carga el prompt con `/68` (test de `_cargar_prompt` OK). Push hecho excluyendo basura de depuración (`chrome_output*.txt`, `si`).
+- **Render (resuelto vía API)**: con la API key del usuario se localizó el servicio `informes-demo` (`srv-d8t3kp36sc1c73e4691g`). El Secret File `prompt_cardio.txt` aún tenía `/17`; se actualizó por API aplicando el cambio SOBRE el contenido exacto de Render (solo la fórmula → `SDS/68 × 100`, 2 ocurrencias; re-GET confirma 2× `/68`, cero `/17`). Redeploy por API (`dep-d8totd37uimc73bsbla0`) → `live`. `GET https://informes-demo.onrender.com/healthz` → `{"ok":true}`. La key NO se guardó en disco/repo (recomendado al usuario revocarla).
 
 ---
 
