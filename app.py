@@ -19,7 +19,7 @@ Qué es "en directo" y qué está pre-cocinado (según el encargo):
 Variables de entorno (todas opcionales; sin ellas la demo funciona en modo
 "pre-cocinado" y nunca se rompe):
   ANTHROPIC_API_KEY   -> activa la estructuración en directo con Claude
-  DEMO_MODEL          -> modelo Claude (def. claude-sonnet-4-6)
+  DEMO_MODEL          -> modelo Claude (def. claude-opus-4-8)
   GROQ_API_KEY        -> activa Whisper en directo (whisper-large-v3-turbo)
   OPENAI_API_KEY      -> alternativa a Groq para Whisper (whisper-1)
   PORT                -> puerto (def. 5005)
@@ -36,7 +36,7 @@ DATA = os.path.join(BASE, "data", "estudios_demo.json")
 app = Flask(__name__, static_folder=os.path.join(BASE, "static"), static_url_path="/static")
 app.config["MAX_CONTENT_LENGTH"] = 50 * 1024 * 1024  # 50 MB audio
 
-DEMO_MODEL = os.environ.get("DEMO_MODEL", "claude-sonnet-4-6")
+DEMO_MODEL = os.environ.get("DEMO_MODEL", "claude-opus-4-8")
 
 # --- limitador sencillo (la clave es pública en la demo): N llamadas/hora/proceso
 import time

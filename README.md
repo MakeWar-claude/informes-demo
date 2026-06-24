@@ -76,7 +76,7 @@ gunicorn -w 2 -b 0.0.0.0:$PORT app:app
 ### Coste aproximado de la demo "en directo"
 
 - Whisper (Groq): céntimos por hora de audio.
-- Claude: con `claude-sonnet-4-6` por defecto, cada informe son fracciones de
+- Claude: con `claude-opus-4-8` por defecto, cada informe son fracciones de
   céntimo. Para abaratar al máximo: `DEMO_MODEL=claude-haiku-4-5-20251001`.
   Si te preocupa el abuso público, deja la IA en modo pre-cocinado (sin
   `ANTHROPIC_API_KEY`) y activa solo la voz.

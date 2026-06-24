@@ -6,7 +6,7 @@ const $ = id => document.getElementById(id);
 const api = (u, o) => fetch(u, o).then(r => r.json());
 
 let ESTUDIOS = [];          // worklist ligero
-let CAP = {voz:false, ia:false, modelo:"claude-sonnet-4-6"};
+let CAP = {voz:false, ia:false, modelo:"claude-opus-4-8"};
 const ASIGNADOS = new Set(JSON.parse(localStorage.getItem("demo_asignados") || "[]"));
 const GUARDADOS = JSON.parse(localStorage.getItem("demo_guardados") || "{}"); // id -> {informe, ts}
 let detalleCache = {};      // id -> estudio completo
@@ -41,11 +41,13 @@ function resetDemo(){
 }
 
 function pintarEstado(){
+  // El indicador de estado IA/voz se retiró de la cabecera; si no existe, nada que pintar.
+  const txt=$("estadoTxt"); if(!txt) return;
   const partes=[];
   partes.push(CAP.ia ? "IA en directo ("+CAP.modelo+")" : "IA pre-cocinada");
   partes.push(CAP.voz ? "voz Whisper online" : "voz: dictado de ejemplo");
-  $("estadoTxt").textContent = partes.join(" · ");
-  $("dotEstado").className = "dot " + ((CAP.ia||CAP.voz)?"ok":"off");
+  txt.textContent = partes.join(" · ");
+  const dot=$("dotEstado"); if(dot) dot.className = "dot " + ((CAP.ia||CAP.voz)?"ok":"off");
 }
 
 function mostrarTab(t){
@@ -107,10 +109,27 @@ async function abrir(id){
   return renderPET(e, m);
 }
 
+/* ---- Abrir el estudio en syngo.via (Image Call-Up, reutiliza la ventana) ----
+   Usa el protocolo de URL  syngovia:  (registrado en el PC con
+   syngovia/registrar_protocolo.ps1), que llama a ialauncher.exe. Éste carga
+   el estudio en el syngo.via YA abierto; si no hay ninguno, lo arranca.
+   Preferimos el nº de petición (accession -> "syngovia:a/", lleva al estudio
+   exacto); si no lo hubiera, caemos al NHC (Patient ID -> "syngovia:pid/"). */
+function abrirEnSyngoVia(accession, nhc){
+  if(accession){ window.location.href = "syngovia:a/"   + encodeURIComponent(accession); return; }
+  if(nhc){       window.location.href = "syngovia:pid/" + encodeURIComponent(nhc);       return; }
+  alert("Este estudio no tiene nº de petición ni NHC.");
+}
+
 function cabecera(e, extra=""){
   return `<span class="volver" onclick="mostrarTab('pendientes')">← Volver a pendientes</span>
     <div class="panel">
-      <h2>${esc(e.descripcion)} ${extra}</h2>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <h2 style="margin:0">${esc(e.descripcion)} ${extra}</h2>
+        <button class="btn-imagenes" style="margin-left:auto"
+                onclick="abrirEnSyngoVia('${esc(String(e.accession||''))}','${esc(String(e.paciente.nhc))}')"
+                title="Abre el estudio en el syngo.via ya abierto (o lo arranca si no lo está)">🖼️ Imágenes</button>
+      </div>
       <div class="demo-grid">
         <div><div class="label">Paciente</div><div class="valor">${esc(e.paciente.nombre)}</div></div>
         <div><div class="label">Edad / Sexo</div><div class="valor">${esc(e.paciente.edad)} años · ${e.paciente.sexo==="F"?"Mujer":"Hombre"}</div></div>
@@ -196,67 +215,91 @@ function renderPET(e, m){
   if(GUARDADOS[e.id]){ $("informe").value=GUARDADOS[e.id].informe; }
 }
 
-/* ============================================ CARDIO · reposo (anamnesis) = */
+/* ============================================ CARDIO · reposo (anamnesis) =
+   Rediseño portado de la app real: clinical-cards con cabecera azul, toggles
+   agrupados azules (régimen/protocolo) y árbol de vasos afectos (EAC conocida). */
 function renderAnamnesis(e, m){
   const a=e.anamnesis||{};
   const ant=a.antecedentes||{}, s=a.sintomas||{}, eac=a.eac||{};
   const chk=(v,lbl)=>`<span class="chip ${v?"":"neg"}">${v?"✓ ":"— "}${lbl}</span>`;
+  // toggle agrupado de solo lectura: marca activa la opción que coincide
+  const bg=(opts,active)=>`<div class="btn-group">${opts.map(o=>
+    `<span class="bg-item ${o.toLowerCase()===String(active||"").toLowerCase()?"activo":""}">${esc(o)}</span>`).join("")}</div>`;
   const trat=(a.tratamiento||[]).map(t=>`<div class="fila-medic"><span>${esc(t.farmaco)}</span><span class="muted">${esc(t.dosis)}</span><span class="muted">${esc(t.posologia)}</span></div>`).join("")||'<span class="muted small">Sin tratamiento registrado</span>';
+
+  // EAC conocida -> árbol de lesiones coronarias (rama-label └)
+  const conocida = String(eac.estado||"").toLowerCase().startsWith("conoc");
+  const ramas=[];
+  if(eac.vasos)   ramas.push(`<div class="rama-label">${esc(eac.vasos)}</div>`);
+  if(eac.infarto) ramas.push(`<div class="rama-label">${esc(eac.infarto)}</div>`);
+  if(eac.ritmo)   ramas.push(`<div class="rama-label">Ritmo/conducción: ${esc(eac.ritmo)}</div>`);
+  const eacBlock = conocida ? `
+      <div class="sub-card" style="margin-top:4px">
+        <div class="tit">Arterias y vasos afectados</div>
+        <div class="arterias-grid">
+          <div class="arteria-card">
+            <h4>Lesiones coronarias conocidas</h4>
+            ${ramas.join("")||'<div class="rama-label muted">Sin detalle de vasos</div>'}
+          </div>
+        </div>
+      </div>` : "";
 
   m.innerHTML=`
     ${cabecera(e, '<span class="fase-pill reposo">reposo</span>')}
     <div class="aviso" style="margin-bottom:16px">Estudio de <strong>reposo</strong>: se cumplimenta la <strong>hoja de anamnesis</strong>. El informe se emitirá junto con el estudio de esfuerzo del mismo paciente.</div>
 
-    <div class="card">
-      <div class="sec">Datos administrativos</div>
-      <div class="g3">
-        <div class="kv"><span class="k">Servicio</span><span class="v">${esc(a.servicio_solicitante)}</span></div>
-        <div class="kv"><span class="k">Régimen</span><span class="v">${esc(a.regimen)}</span></div>
-        <div class="kv"><span class="k">Protocolo</span><span class="v">${esc(a.protocolo)}</span></div>
+    <div class="clinical-card">
+      <h3>Datos administrativos y demografía</h3>
+      <div class="form-grid-3">
+        <div class="kv"><span class="k">Servicio solicitante</span><span class="v">${esc(a.servicio_solicitante)}</span></div>
+        <div><div class="k" style="font-size:10.5px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:6px">Régimen</div>${bg(["Ambulatorio","Ingresado"],a.regimen)}</div>
+        <div><div class="k" style="font-size:10.5px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:6px">Protocolo</div>${bg(["Farmacologico","Esfuerzo fisico"],a.protocolo)}</div>
         <div class="kv"><span class="k">Peso</span><span class="v">${esc(a.peso_kg)} kg</span></div>
         <div class="kv"><span class="k">Altura</span><span class="v">${esc(a.altura_cm)} cm</span></div>
-        <div class="kv"><span class="k">Motivo</span><span class="v">${esc(a.motivo_exploracion)}</span></div>
+        <div class="kv"><span class="k">Motivo de exploración</span><span class="v">${esc(a.motivo_exploracion)}</span></div>
       </div>
     </div>
 
-    <div class="card">
-      <div class="sec">Enfermedad coronaria</div>
-      <div class="g2">
-        <div class="kv"><span class="k">Estado EAC</span><span class="v">${esc(eac.estado||"—")}</span></div>
-        <div class="kv"><span class="k">Ritmo/conducción</span><span class="v">${esc(eac.ritmo||"Sin alteraciones")}</span></div>
-      </div>
-      ${eac.vasos?`<div class="kv" style="margin-top:10px"><span class="k">Vasos / revascularización</span><span class="v">${esc(eac.vasos)}</span></div>`:""}
-      ${eac.infarto?`<div class="kv" style="margin-top:10px"><span class="k">Infarto previo</span><span class="v">${esc(eac.infarto)}</span></div>`:""}
+    <div class="clinical-card">
+      <h3>Antecedentes de cardiopatía isquémica (EAC) y conducción</h3>
+      ${bg(["Sospecha","Conocida"],eac.estado)}
+      ${eacBlock}
+      ${!conocida && eac.ritmo?`<div class="kv" style="margin-top:6px"><span class="k">Ritmo/conducción</span><span class="v">${esc(eac.ritmo)}</span></div>`:""}
     </div>
 
-    <div class="card">
-      <div class="sec">Sintomatología</div>
-      <div class="chips">
-        ${chk(s.presenta,"Sintomático")}
-        ${chk(s.disnea,"Disnea")}
-        ${chk(s.dolor_toracico,"Dolor torácico"+(s.tipo_dolor?" ("+s.tipo_dolor+")":""))}
-        ${chk(s.palpitaciones,"Palpitaciones")}
-        ${chk(s.sincope,"Síncope")}
+    <div class="clinical-card">
+      <h3>Sintomatología y factores de riesgo (FRCV)</h3>
+      <div class="form-grid-2">
+        <div class="sub-card">
+          <div class="tit">Sintomatología</div>
+          <div class="chips">
+            ${chk(s.presenta,"Sintomático")}
+            ${chk(s.disnea,"Disnea")}
+            ${chk(s.dolor_toracico,"Dolor torácico"+(s.tipo_dolor?" ("+s.tipo_dolor+")":""))}
+            ${chk(s.palpitaciones,"Palpitaciones")}
+            ${chk(s.sincope,"Síncope")}
+          </div>
+          ${s.otros?`<div class="kv"><span class="k">Otros</span><span class="v">${esc(s.otros)}</span></div>`:""}
+        </div>
+        <div class="sub-card">
+          <div class="tit">Factores de riesgo / antecedentes</div>
+          <div class="chips">
+            ${chk(ant.hta,"HTA")} ${chk(ant.hipercolesterolemia,"Dislipemia")}
+            ${chk(ant.diabetes,"Diabetes"+(ant.tipo_diabetes?" ("+ant.tipo_diabetes+")":""))}
+            ${chk(ant.tabaco,"Tabaquismo")} ${chk(ant.obesidad,"Obesidad")}
+            ${chk(ant.epoc,"EPOC")} ${chk(ant.irc,"IRC")}
+          </div>
+          ${ant.alergias?`<div class="kv"><span class="k">Alergias</span><span class="v">${esc(ant.alergias)}</span></div>`:""}
+          ${ant.otros?`<div class="kv"><span class="k">Otros</span><span class="v">${esc(ant.otros)}</span></div>`:""}
+        </div>
       </div>
-      ${s.otros?`<div class="kv" style="margin-top:10px"><span class="k">Otros</span><span class="v">${esc(s.otros)}</span></div>`:""}
     </div>
 
-    <div class="card">
-      <div class="sec">Factores de riesgo / antecedentes</div>
-      <div class="chips">
-        ${chk(ant.hta,"HTA")} ${chk(ant.hipercolesterolemia,"Dislipemia")}
-        ${chk(ant.diabetes,"Diabetes"+(ant.tipo_diabetes?" ("+ant.tipo_diabetes+")":""))}
-        ${chk(ant.tabaco,"Tabaquismo")} ${chk(ant.obesidad,"Obesidad")}
-        ${chk(ant.epoc,"EPOC")} ${chk(ant.irc,"IRC")}
-      </div>
-      ${ant.alergias?`<div class="kv" style="margin-top:10px"><span class="k">Alergias</span><span class="v">${esc(ant.alergias)}</span></div>`:""}
-      ${ant.otros?`<div class="kv" style="margin-top:6px"><span class="k">Otros</span><span class="v">${esc(ant.otros)}</span></div>`:""}
+    <div class="clinical-card">
+      <h3>Tratamiento farmacológico activo</h3>
+      <div class="sub-card">${trat}</div>
     </div>
 
-    <div class="card">
-      <div class="sec">Tratamiento actual</div>
-      ${trat}
-    </div>
     <div class="btn-row"><button class="secundario" onclick="mostrarTab('pendientes')">✓ Guardar y volver</button></div>`;
 }
 
@@ -293,8 +336,12 @@ function renderCardioEsfuerzo(e, m){
       <div class="dictado-estado" id="estadoCamposBox" style="margin-top:6px"></div>
     </div>
 
-    <div class="card">
-      <div class="sec">Constantes y cuantificación · prueba de esfuerzo</div>
+    <div class="clinical-card">
+      <h3>Constantes y cuantificación · prueba de esfuerzo</h3>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span class="k" style="font-size:10.5px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;font-weight:600">Protocolo</span>
+        ${(()=>{const p=c.protocolo||"";const it=(v,l)=>`<span class="bg-item ${v.toLowerCase()===p.toLowerCase()?"activo":""}">${l}</span>`;return `<div class="btn-group">${it("Farmacologico","Farmacológico")}${it("Esfuerzo fisico","Esfuerzo físico")}</div>`;})()}
+      </div>
       <div class="g4">
         ${campo("fc_reposo","FC reposo (lpm)",c.fc_reposo)}
         ${campo("ta_reposo","TA reposo",c.ta_reposo)}
@@ -320,8 +367,8 @@ function renderCardioEsfuerzo(e, m){
       </div>
     </div>
 
-    <div class="card">
-      <div class="sec">Impresión visual (dictado)</div>
+    <div class="clinical-card">
+      <h3>Impresión visual (dictado)</h3>
       <div class="grabar-zona" id="zona"><span class="dot"></span>
         <button class="grande" id="btnGrabar">🎙️ Grabar</button>
         <span class="timer" id="timer">00:00</span></div>
@@ -332,8 +379,8 @@ function renderCardioEsfuerzo(e, m){
       </div>
     </div>
 
-    <div class="card">
-      <div class="sec">Informe generado <span id="modoBadge"></span></div>
+    <div class="clinical-card">
+      <h3 style="display:flex;align-items:center;gap:8px">Informe generado <span id="modoBadge"></span></h3>
       <textarea class="informe" id="informe" placeholder="El informe de perfusión miocárdica aparecerá aquí…"></textarea>
       <div class="btn-row">
         <button class="secundario" id="btnCopiar">📋 Copiar</button>
